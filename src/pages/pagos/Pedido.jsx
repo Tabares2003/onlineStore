@@ -60,7 +60,7 @@ export default function Pedido() {
                         <p>Cantidad: {producto.cantidad}</p>
                     </div>
                 ))}
-                <p>Total: {calcularTotal()}</p>
+                <p>Total: {calcularTotal()}cop</p>
 
                 <form onSubmit={handleSubmit}>
                     <input type="text" placeholder="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} required />
