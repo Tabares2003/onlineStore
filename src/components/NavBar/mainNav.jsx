@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from 'react';
 import { CarritoContext } from './CarritoProvider';
 
 import { AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText, useMediaQuery, useTheme, Button } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+ 
 import { Link as RouterLink } from 'react-router-dom';
 import { IoSearchOutline } from "react-icons/io5";
 import { IoSearch } from "react-icons/io5";
