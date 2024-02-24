@@ -8,6 +8,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { IoSearchOutline } from "react-icons/io5";
 import { IoSearch } from "react-icons/io5";
 import { MdOutlineShoppingCart } from "react-icons/md";
+import { IoMdMenu } from "react-icons/io";
 
 import Buscar from './Buscar';
 import { useLocation } from 'react-router-dom';
@@ -66,7 +67,7 @@ function mainNav() {
             {isMobile ? (
                 <>
                     <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleDrawerOpen}>
-                        <MenuIcon />
+                        <IoMdMenu />
                     </IconButton>
                     <img src="https://i.postimg.cc/x8pzQ3cg/LogoTS.png" alt="" />
                     <Drawer anchor="left" open={open} onClose={handleDrawerClose}>
