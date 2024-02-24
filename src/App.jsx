@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
 import MainNav from './components/NavBar/mainNav';
@@ -6,20 +5,25 @@ import Hombres from './pages/Hombres/Hombres';
 import Inicio from './pages/Inicio/inicio';
 import Carrito from './pages/pagos/Carrito';
 import Pedido from './pages/pagos/Pedido';
-
+import { CarritoProvider } from './components/NavBar/CarritoProvider';
+import Producto from './pages/producto/Producto';
+import Historial from './pages/Historial/historial';
 function App() {
-
   return (
-    <Router>
-      <MainNav />
-      <Routes>
-        <Route path="/" element={<Inicio />} />
-        <Route path="/Hombres" element={<Hombres />} /> 
-        <Route path="/Carrito" element={<Carrito />} /> 
-        <Route path="/Pedido" element={<Pedido />} /> 
-      </Routes>
-    </Router>
+    <CarritoProvider>
+      <Router>
+        <MainNav />
+        <Routes>
+          <Route path="/" element={<Inicio />} />
+          <Route path="/Hombres" element={<Hombres />} />
+          <Route path="/Carrito" element={<Carrito />} />
+          <Route path="/Pedido" element={<Pedido />} />
+          <Route path="/Historial" element={<Historial />} />
+          <Route path="/Producto/:productId" element={<Producto />} />
+        </Routes>
+      </Router>
+    </CarritoProvider>
   )
 }
 
-export default App
+export default App;

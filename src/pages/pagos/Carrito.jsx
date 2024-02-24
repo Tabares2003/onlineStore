@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { CarritoContext } from '../../components/NavBar/CarritoProvider';
 export default function Carrito() {
 
     // Definimos el estado para el carrito
-    const [carrito, setCarrito] = useState([]);
+    const { carrito, setCarrito } = useContext(CarritoContext);
 
     // Usamos useEffect para cargar los productos del carrito desde el almacenamiento local cuando se monta el componente
     useEffect(() => {
