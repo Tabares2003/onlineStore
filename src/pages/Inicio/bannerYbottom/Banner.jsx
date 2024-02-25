@@ -30,11 +30,18 @@ export default function Banner() {
         "https://i.postimg.cc/zGMqjyMq/nb1.png",
         "https://i.postimg.cc/zGMqjyMq/nb1.png"
     ];
+
+
+
+
+
+
+    
     return (
         <section className="section-bannerMR">
             <Grid container style={{ width: '100%', height: 'auto' }}>
                 <Grid item xs={12} md={6} style={{ padding: 0 }}>
-                    <Carousel slide={false} nextIcon={<CustomButton iconUrl={nextIcon} />} prevIcon={<CustomButton iconUrl={prevIcon} />} nextLabel="" prevLabel="">
+                    <Carousel slide={false} nextLabel="" prevLabel="">
                         {imagenes.map((imagen, index) => (
                             <Carousel.Item key={index} interval={4000}>
                                 <img

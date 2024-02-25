@@ -15,9 +15,9 @@ import { CarritoContext } from '../../../components/NavBar/CarritoProvider';
 import hombresCamisas from '../../../../data/camisetasHombres';
 import { useNavigate } from 'react-router-dom';
 
-
-
-export default function RecomendadosInicio() {
+import niñosCamisetas from '../../../../data/camisetasNiños';
+import chaquetas from '../../../../data/chaquetas'; 
+export default function Chaquetas() {
 
     const { carrito, setCarrito } = useContext(CarritoContext);
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -29,6 +29,8 @@ export default function RecomendadosInicio() {
         localStorage.setItem('carrito', JSON.stringify(carrito));
     }, [carrito]);
 
+
+    //Función para agregar al carrito por medio del local y se abre drawer de Mui
     const agregarAlCarrito = (producto) => {
         if (carrito.find(item => item.id === producto.id)) {
             setDrawerOpen(true);
@@ -38,7 +40,7 @@ export default function RecomendadosInicio() {
         }
     }
 
-
+    //Función para sumar local de todos los productos en carrito
     const calcularTotal = () => {
         return carrito.reduce((total, producto) => total + (Number(producto.price) * producto.cantidad), 0);
     }
@@ -53,6 +55,8 @@ export default function RecomendadosInicio() {
             return nuevoCarrito;
         });
     }
+
+
     // Función para eliminar un producto del carrito
     const eliminarDelCarrito = (idProducto) => {
         const nuevoCarrito = carrito.filter((producto) => producto.id !== idProducto);
@@ -64,11 +68,11 @@ export default function RecomendadosInicio() {
 
 
     return (
-        <section className="RecomendadosInicioTop">
+        <section className="ChaquetasInicio">
             <div className="mainMasVendidos">
                 <div className="SubMainMasVendidos">
                     <Swiper slidesPerView={5}>
-                        {hombresCamisas.slice(0, 10).map((producto, index) => {
+                        {chaquetas.slice(0, 10).map((producto, index) => {
                             const [isHovered, setIsHovered] = React.useState(false);
                             const descuento = producto.offert ? Math.round((1 - producto.offert / producto.price) * 100) : 0;
                             return (
@@ -79,8 +83,8 @@ export default function RecomendadosInicio() {
                                     >
                                         <div className="SlideSwiperImgDescuento">
                                             <div className="subSlideSwiperImgDescuento">
-                                                <img  onClick={() => navigate(`/Producto/${producto.id}`)} src={isHovered ? producto.image : producto.image2} alt={`Imagen ${index + 1}`}
-                                                    style={{ transform: isHovered ? 'scale(1.2)' : 'scale(1)', transition: 'transform .9s' }}  />
+                                                <img onClick={() => navigate(`/Producto/${producto.id}`)} src={isHovered ? producto.image : producto.image2} alt={`Imagen ${index + 1}`}
+                                                    style={{ transform: isHovered ? 'scale(1.2)' : 'scale(1)', transition: 'transform .9s' }} />
                                                 {isHovered && (
                                                     <div className='EnviarCarritoSwiper' onClick={() => agregarAlCarrito(producto)}>
                                                         <div>
