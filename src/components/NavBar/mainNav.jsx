@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
-import { CarritoContext } from './CarritoProvider';
-
+import { CarritoContext } from './CarritoProvider'; 
 import { AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText, useMediaQuery, useTheme, Button } from '@mui/material';
- 
+import { useNavigate } from 'react-router-dom';
 import { Link as RouterLink } from 'react-router-dom';
 import { IoSearchOutline } from "react-icons/io5";
 import { IoSearch } from "react-icons/io5";
@@ -25,8 +24,7 @@ function mainNav() {
 
 
 
-
-    const { carrito } = useContext(CarritoContext);
+ 
     const [cantidadCarrito, setCantidadCarrito] = useState(0);
     // Actualiza la cantidad de productos en el carrito
     const actualizarCantidadCarrito = () => {
@@ -62,14 +60,63 @@ function mainNav() {
         setOpen(false);
     };
 
+
+
+    const { carrito, setCarrito } = useContext(CarritoContext);
+    const [drawerOpen, setDrawerOpen] = useState(false);
+    const navigate = useNavigate();
+    const abrirDrawer = () => {
+        setDrawerOpen(true);
+    }
+
+
+    useEffect(() => {
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+    }, [carrito]); 
+ 
+    //Función para sumar local de todos los productos en carrito
+    const calcularTotal = () => {
+        return carrito.reduce((total, producto) => total + (Number(producto.price) * producto.cantidad), 0);
+    }
+
+    // Función para actualizar la cantidad de un producto en el carrito
+    const actualizarCantidad = (idProducto, nuevaCantidad) => {
+        setCarrito((carritoActual) => {
+            const nuevoCarrito = carritoActual.map((producto) =>
+                producto.id === idProducto ? { ...producto, cantidad: nuevaCantidad } : producto
+            );
+            localStorage.setItem('carrito', JSON.stringify(nuevoCarrito));
+            return nuevoCarrito;
+        });
+    }
+
+
+    // Función para eliminar un producto del carrito
+    const eliminarDelCarrito = (idProducto) => {
+        const nuevoCarrito = carrito.filter((producto) => producto.id !== idProducto);
+        setCarrito(nuevoCarrito);
+        localStorage.setItem('carrito', JSON.stringify(nuevoCarrito));
+    }
+
     return (
-        <nav  className='muiNav'>
+        <nav className='muiNav'>
             {isMobile ? (
                 <>
                     <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleDrawerOpen}>
                         <IoMdMenu />
                     </IconButton>
                     <img src="https://i.postimg.cc/x8pzQ3cg/LogoTS.png" alt="" />
+                    <div className='iconsNavPc'>
+                        <div>
+                            <IoSearch />
+                        </div>
+                        <div className='cartNav'>
+                            <div className='cartNavIcon'>
+                                <MdOutlineShoppingCart />
+                                <span className='cartCount'>{carrito.length}</span>
+                            </div>
+                        </div>
+                    </div>
                     <Drawer anchor="left" open={open} onClose={handleDrawerClose}>
                         <List>
                             {['Inicio', 'Hombres', 'Niños', 'Mujeres', 'Promociones'].map((text) => (
@@ -101,13 +148,29 @@ function mainNav() {
                         </div>
                         <div className='cartNav'>
                             <div className='cartNavIcon'>
-                                <MdOutlineShoppingCart />
-                                <span className='cartCount'>{carrito.length}</span>
+                                <MdOutlineShoppingCart onClick={abrirDrawer}/>
+                                <span className='cartCount' onClick={abrirDrawer}>{carrito.length}</span>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </div>
-            )} 
+            )}
+
+            <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+                <List>
+                    {carrito.map((producto) => (
+                        <ListItem key={producto.id}>
+                            <ListItemText primary={producto.name} secondary={`Cantidad: ${producto.cantidad}`} />
+                            <button onClick={() => actualizarCantidad(producto.id, producto.cantidad + 1)} disabled={producto.cantidad >= producto.stock}>+</button>
+                            <button onClick={() => actualizarCantidad(producto.id, producto.cantidad - 1)} disabled={producto.cantidad <= 1}>-</button>
+                            <button onClick={() => eliminarDelCarrito(producto.id)}>Eliminar</button>
+                        </ListItem>
+                    ))}
+                    <ListItem>
+                        <ListItemText primary={`Total: ${calcularTotal()}`} />
+                    </ListItem>
+                </List>
+            </Drawer>
         </nav>
     );
 }

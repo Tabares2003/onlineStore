@@ -49,6 +49,7 @@
 
 .cartNavIcon {
   position: relative;
+  cursor: pointer;
 }
 
 .cartCount {
@@ -78,6 +79,10 @@
 
 .linksNavPc p {
   margin-bottom: 0 !important;
+}
+.linksNavPc a:hover {
+  color: #ffc224;
+  text-decoration: underline;
 }
 
 /*Fin estilos navbar*/
