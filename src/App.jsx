@@ -9,6 +9,7 @@ import { CarritoProvider } from './components/NavBar/CarritoProvider';
 import Producto from './pages/producto/Producto';
 import Historial from './pages/Historial/historial';
 import Footer from './components/Footer/Footer';
+import Resultados from './pages/resultadosEncontrados/Resultados';
 function App() {
   return (
     <CarritoProvider>
@@ -21,6 +22,7 @@ function App() {
           <Route path="/Pedido" element={<Pedido />} />
           <Route path="/Historial" element={<Historial />} />
           <Route path="/Producto/:productId" element={<Producto />} />
+          <Route path="/Resultados/:query" element={<Resultados />} />
         </Routes>
         <Footer />
       </Router>

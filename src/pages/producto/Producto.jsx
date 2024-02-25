@@ -15,14 +15,25 @@ import {
 import React, { useEffect, useState, useContext } from "react";
 
 
-import hombresCamisas from "../../../data/camisetasHombres";
+
 import { useParams } from 'react-router-dom';
+
+import hombresCamisas from "../../../data/camisetasHombres";
+import mujeresCamisetas from "../../../data/camisetasMujeres";
+import chaquetas from "../../../data/chaquetas";
+import niñosCamisetas from "../../../data/camisetasNiños";
+
 export default function Producto() {
 
 
-    // Guardar el producto visitado en el historial cuando el componente se monta
+    // Combina todos los productos en una sola matriz
+    const todosLosProductos = [...hombresCamisas, ...mujeresCamisetas, ...chaquetas, ...niñosCamisetas];
+
     const { productId } = useParams();
-    const producto = hombresCamisas.find(p => p.id === Number(productId));
+
+    // Busca el producto en la matriz combinada
+    const producto = todosLosProductos.find(p => p.id === Number(productId));
+
 
     // Guardar el producto visitado en el historial cuando el componente se monta
     useEffect(() => {
