@@ -16,7 +16,7 @@ import hombresCamisas from '../../../../data/camisetasHombres';
 import { useNavigate } from 'react-router-dom';
 
 import niñosCamisetas from '../../../../data/camisetasNiños';
-import chaquetas from '../../../../data/chaquetas'; 
+import chaquetas from '../../../../data/chaquetas';
 export default function Chaquetas() {
 
     const { carrito, setCarrito } = useContext(CarritoContext);
@@ -70,8 +70,37 @@ export default function Chaquetas() {
     return (
         <section className="ChaquetasInicio">
             <div className="mainMasVendidos">
+                <div className='verTodo'>
+                    <p>Ver todo</p>
+                </div>
                 <div className="SubMainMasVendidos">
-                    <Swiper slidesPerView={5}>
+                    <Swiper slidesPerView={5} breakpoints={{
+                        // cuando la pantalla es >= 320px
+                        320: {
+                            slidesPerView: 1,
+                            spaceBetween: 10
+                        },
+                        // cuando la pantalla es >= 480px
+                        480: {
+                            slidesPerView: 2,
+                            spaceBetween: 5
+                        },
+                        // cuando la pantalla es >= 640px
+                        640: {
+                            slidesPerView: 3,
+                            spaceBetween: 5
+                        },
+                        // cuando la pantalla es >= 768px
+                        768: {
+                            slidesPerView: 4,
+                            spaceBetween: 7
+                        },
+                        // cuando la pantalla es >= 1024px
+                        1024: {
+                            slidesPerView: 5,
+                            spaceBetween: 7
+                        }
+                    }}>
                         {chaquetas.slice(0, 10).map((producto, index) => {
                             const [isHovered, setIsHovered] = React.useState(false);
                             const descuento = producto.offert ? Math.round((1 - producto.offert / producto.price) * 100) : 0;

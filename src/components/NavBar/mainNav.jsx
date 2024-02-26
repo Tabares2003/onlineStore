@@ -12,6 +12,7 @@ import React, { useEffect, useState, useContext } from "react";
 import Buscar from './Buscar';
 import { useLocation } from 'react-router-dom';
 import CarritoDrawer from './CarritoDrawer';
+import MenuMobile from './MenuMobile,';
 
 function mainNav() {
 
@@ -21,7 +22,7 @@ function mainNav() {
     const [cantidadCarrito, setCantidadCarrito] = useState(0);
     const [open, setOpen] = useState(false);
     const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const navigate = useNavigate();
 
     // Usefect que me envía para arriba de la pantalla
@@ -142,23 +143,12 @@ function mainNav() {
                 <CarritoDrawer />
             </Drawer>
 
-            <Drawer
-                anchor='top'
-                open={openDos}
-                onClose={toggleDrawer(false)}
-                disableScrollLock={true}
-            >
+            <Drawer anchor='top' open={openDos} onClose={toggleDrawer(false)} disableScrollLock={true}>
                 <Buscar toggleDrawer={toggleDrawer} />
             </Drawer>
 
             <Drawer anchor="left" open={open} onClose={handleDrawerClose}>
-                <List>
-                    {['Inicio', 'Hombres', 'Niños', 'Mujeres', 'Promociones'].map((text) => (
-                        <ListItem button key={text} component={RouterLink} to={`/${text}`} onClick={handleDrawerClose}>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
+                <MenuMobile onClose={handleDrawerClose}/> 
             </Drawer>
         </nav>
     );
