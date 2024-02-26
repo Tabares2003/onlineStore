@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
- 
+
 import { CarritoContext } from './CarritoProvider';
 import { AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText, useMediaQuery, useTheme, Button, Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -72,7 +72,7 @@ function mainNav() {
     }
 
 
- 
+
     const [openDos, setOpenDos] = React.useState(false);
 
     const toggleDrawer = (openDos) => (event) => {
@@ -87,32 +87,28 @@ function mainNav() {
     return (
         <nav className='muiNav'>
             {isMobile ? (
-                <>
-                    <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleDrawerOpen}>
-                        <IoMdMenu />
-                    </IconButton>
-                    <img src="https://i.postimg.cc/x8pzQ3cg/LogoTS.png" alt="" />
-                    <div className='iconsNavPc'>
+                <div className='mobileNav'>
+                    <div className='iconMenuNav'>
+                        <IoMdMenu onClick={handleDrawerOpen} />
+                    </div>
+
+                    <div className='logoNav'>
+                        <img src="https://i.postimg.cc/x8pzQ3cg/LogoTS.png" alt="" />
+                    </div>
+
+                    <div className='iconsMobileNav'>
                         <div>
-                            <IoSearch />
+                            <IoSearch onClick={toggleDrawer(true)}/>
                         </div>
                         <div className='cartNav'>
                             <div className='cartNavIcon'>
-                                <MdOutlineShoppingCart />
+                                <MdOutlineShoppingCart onClick={abrirDrawer}/>
                                 <span className='cartCount'>{carrito.length}</span>
                             </div>
                         </div>
                     </div>
-                    <Drawer anchor="left" open={open} onClose={handleDrawerClose}>
-                        <List>
-                            {['Inicio', 'Hombres', 'Niños', 'Mujeres', 'Promociones'].map((text) => (
-                                <ListItem button key={text} component={RouterLink} to={`/${text}`} onClick={handleDrawerClose}>
-                                    <ListItemText primary={text} />
-                                </ListItem>
-                            ))}
-                        </List>
-                    </Drawer>
-                </>
+
+                </div>
             ) : (
                 <div className='navStylesPc'>
                     <div className='iconNavPc'>
@@ -143,11 +139,26 @@ function mainNav() {
             )}
 
             <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-                <CarritoDrawer/>
+                <CarritoDrawer />
             </Drawer>
 
-            <Drawer anchor='top' open={openDos} onClose={toggleDrawer(false)}>
-               <Buscar toggleDrawer={toggleDrawer}/>
+            <Drawer
+                anchor='top'
+                open={openDos}
+                onClose={toggleDrawer(false)}
+                disableScrollLock={true}
+            >
+                <Buscar toggleDrawer={toggleDrawer} />
+            </Drawer>
+
+            <Drawer anchor="left" open={open} onClose={handleDrawerClose}>
+                <List>
+                    {['Inicio', 'Hombres', 'Niños', 'Mujeres', 'Promociones'].map((text) => (
+                        <ListItem button key={text} component={RouterLink} to={`/${text}`} onClick={handleDrawerClose}>
+                            <ListItemText primary={text} />
+                        </ListItem>
+                    ))}
+                </List>
             </Drawer>
         </nav>
     );
