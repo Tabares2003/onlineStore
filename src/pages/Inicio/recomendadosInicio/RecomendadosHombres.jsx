@@ -5,7 +5,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import React, { useContext, useEffect, useState } from "react";
 import { MdOutlineShoppingCart } from "react-icons/md";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import hombresCamisas from '../../../../data/camisetasHombres';
@@ -29,16 +29,24 @@ export default function RecomendadosHombres() {
 
     //Función para agregar al carrito por medio del local y se abre drawer de Mui
     const agregarAlCarrito = (producto) => {
-        if (carrito.find(item => item.id === producto.id)) {
-            setDrawerOpen(true);
+        const productoEnCarrito = carrito.find(item => item.id === producto.id);
+
+        if (productoEnCarrito) {
+            // Si el producto ya está en el carrito y no excede el stock disponible
+            if (productoEnCarrito.cantidad < producto.stock) {
+                // Incrementa la cantidad del producto en el carrito
+                setCarrito(carritoActual => carritoActual.map(item =>
+                    item.id === producto.id ? { ...item, cantidad: item.cantidad + 1 } : item
+                ));
+            }
         } else {
-            setCarrito((carritoActual) => [...carritoActual, { ...producto, cantidad: 1 }], () => {
-                // Abre el drawer después de que el estado del carrito se haya actualizado
-                setDrawerOpen(true);
-            });
+            // Si el producto no está en el carrito, lo agrega
+            setCarrito((carritoActual) => [...carritoActual, { ...producto, cantidad: 1 }]);
         }
+
+        // Abre el drawer
+        setDrawerOpen(true);
     };
- 
 
 
 
@@ -47,7 +55,9 @@ export default function RecomendadosHombres() {
         <section className="RecomendadosInicioTop">
             <div className="mainMasVendidos">
                 <div className='verTodo'>
-                    <p>Ver todo</p>
+                    <Link to={`/Hombres`}>
+                        <p>Ver todo</p>
+                    </Link>
                 </div>
                 <div className="SubMainMasVendidos">
                     <Swiper slidesPerView={5} breakpoints={{
@@ -92,7 +102,7 @@ export default function RecomendadosHombres() {
                                                     style={{ transform: isHovered ? 'scale(1.2)' : 'scale(1)', transition: 'transform .9s' }} />
                                                 {isHovered && (
                                                     <Hidden mdDown>
-                                                        <div className='EnviarCarritoSwiper'  onClick={() => agregarAlCarrito(producto)}>
+                                                        <div className='EnviarCarritoSwiper' onClick={() => agregarAlCarrito(producto)}>
                                                             <div>
                                                                 <span>Agregar al carrito</span>
                                                                 <MdOutlineShoppingCart />
@@ -128,7 +138,7 @@ export default function RecomendadosHombres() {
                 </div>
 
                 <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)} disableScrollLock={true}>
-                    <CarritoDrawer/>
+                    <CarritoDrawer />
                 </Drawer>
             </div>
         </section>

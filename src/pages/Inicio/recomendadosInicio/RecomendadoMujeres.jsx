@@ -8,9 +8,10 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { CarritoContext } from '../../../components/NavBar/CarritoProvider';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import mujeresCamisetas from '../../../../data/camisetasMujeres';
+import CarritoDrawer from '../../../components/NavBar/CarritoDrawer';
 export default function RecomendadoMujeres() {
 
     const { carrito, setCarrito } = useContext(CarritoContext);
@@ -26,38 +27,24 @@ export default function RecomendadoMujeres() {
 
     //Función para agregar al carrito por medio del local y se abre drawer de Mui
     const agregarAlCarrito = (producto) => {
-        if (carrito.find(item => item.id === producto.id)) {
-            setDrawerOpen(true);
+        const productoEnCarrito = carrito.find(item => item.id === producto.id);
+
+        if (productoEnCarrito) {
+            // Si el producto ya está en el carrito y no excede el stock disponible
+            if (productoEnCarrito.cantidad < producto.stock) {
+                // Incrementa la cantidad del producto en el carrito
+                setCarrito(carritoActual => carritoActual.map(item =>
+                    item.id === producto.id ? { ...item, cantidad: item.cantidad + 1 } : item
+                ));
+            }
         } else {
+            // Si el producto no está en el carrito, lo agrega
             setCarrito((carritoActual) => [...carritoActual, { ...producto, cantidad: 1 }]);
-            setDrawerOpen(true);
         }
-    }
 
-    //Función para sumar local de todos los productos en carrito
-    const calcularTotal = () => {
-        return carrito.reduce((total, producto) => total + (Number(producto.price) * producto.cantidad), 0);
-    }
-
-    // Función para actualizar la cantidad de un producto en el carrito
-    const actualizarCantidad = (idProducto, nuevaCantidad) => {
-        setCarrito((carritoActual) => {
-            const nuevoCarrito = carritoActual.map((producto) =>
-                producto.id === idProducto ? { ...producto, cantidad: nuevaCantidad } : producto
-            );
-            localStorage.setItem('carrito', JSON.stringify(nuevoCarrito));
-            return nuevoCarrito;
-        });
-    }
-
-
-    // Función para eliminar un producto del carrito
-    const eliminarDelCarrito = (idProducto) => {
-        const nuevoCarrito = carrito.filter((producto) => producto.id !== idProducto);
-        setCarrito(nuevoCarrito);
-        localStorage.setItem('carrito', JSON.stringify(nuevoCarrito));
-    }
-
+        // Abre el drawer
+        setDrawerOpen(true);
+    };
 
 
 
@@ -65,14 +52,16 @@ export default function RecomendadoMujeres() {
         <section className="mujeresRecInicio">
             <div className="mainMasVendidos">
                 <div className='verTodo'>
-                    <p>Ver todo</p>
+                    <Link to={`/Mujeres`}>
+                        <p>Ver todo</p>
+                    </Link>
                 </div>
                 <div className="SubMainMasVendidos">
                     <Swiper slidesPerView={5} breakpoints={{
                         // cuando la pantalla es >= 320px
                         320: {
-                            slidesPerView: 1,
-                            spaceBetween: 10
+                            slidesPerView: 2,
+                            spaceBetween: 5
                         },
                         // cuando la pantalla es >= 480px
                         480: {
@@ -110,7 +99,7 @@ export default function RecomendadoMujeres() {
                                                     style={{ transform: isHovered ? 'scale(1.2)' : 'scale(1)', transition: 'transform .9s' }} />
                                                 {isHovered && (
                                                     <Hidden mdDown>
-                                                        <div className='EnviarCarritoSwiper'>
+                                                        <div className='EnviarCarritoSwiper' onClick={() => agregarAlCarrito(producto)}>
                                                             <div>
                                                                 <span>Agregar al carrito</span>
                                                                 <MdOutlineShoppingCart />
@@ -146,19 +135,7 @@ export default function RecomendadoMujeres() {
                 </div>
 
                 <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-                    <List>
-                        {carrito.map((producto) => (
-                            <ListItem key={producto.id}>
-                                <ListItemText primary={producto.name} secondary={`Cantidad: ${producto.cantidad}`} />
-                                <button onClick={() => actualizarCantidad(producto.id, producto.cantidad + 1)} disabled={producto.cantidad >= producto.stock}>+</button>
-                                <button onClick={() => actualizarCantidad(producto.id, producto.cantidad - 1)} disabled={producto.cantidad <= 1}>-</button>
-                                <button onClick={() => eliminarDelCarrito(producto.id)}>Eliminar</button>
-                            </ListItem>
-                        ))}
-                        <ListItem>
-                            <ListItemText primary={`Total: ${calcularTotal()}`} />
-                        </ListItem>
-                    </List>
+                    <CarritoDrawer />
                 </Drawer>
             </div>
         </section>
