@@ -19,6 +19,7 @@ function mainNav() {
     const location = useLocation();
     const { carrito, setCarrito } = useContext(CarritoContext);
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const [drawerOpenDos, setDrawerOpenDos] = useState(false);
     const [cantidadCarrito, setCantidadCarrito] = useState(0);
     const [open, setOpen] = useState(false);
     const theme = useTheme();
@@ -72,7 +73,13 @@ function mainNav() {
         setDrawerOpen(true);
     }
 
+    const abrirDrawerDos = () => {
+        setDrawerOpenDos(true);
+    }
 
+    const handleDrawerCloseDos = () => {
+        setDrawerOpenDos(false);
+    };
 
     const [openDos, setOpenDos] = React.useState(false);
 
@@ -90,7 +97,7 @@ function mainNav() {
             {isMobile ? (
                 <div className='mobileNav'>
                     <div className='iconMenuNav'>
-                        <IoMdMenu onClick={handleDrawerOpen} />
+                        <IoMdMenu onClick={abrirDrawerDos} />
                     </div>
 
                     <div className='logoNav'>
@@ -147,8 +154,8 @@ function mainNav() {
                 <Buscar toggleDrawer={toggleDrawer} />
             </Drawer>
 
-            <Drawer anchor="left" open={open} onClose={handleDrawerClose}>
-                <MenuMobile onClose={handleDrawerClose}/> 
+            <Drawer anchor="left" open={drawerOpenDos} onClose={() => setDrawerOpenDos(false)}>
+                <MenuMobile onClose={handleDrawerCloseDos}/> 
             </Drawer>
         </nav>
     );

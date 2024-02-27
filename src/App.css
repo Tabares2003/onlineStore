@@ -121,6 +121,26 @@
 
 
 /*Inicio estilos Recomendados inicio*/
+.SendCarritoMobile{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: black;
+  margin-top: 1.5rem; 
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  gap: .5rem;
+}
+.SendCarritoMobile span{
+  margin: 0 !important;
+  font-size: 13px;
+  font-weight: 600;
+}
+.SendCarritoMobile svg{
+  font-size: 18px;
+}
 .RecomendadosInicioTop {
   margin-top: 1rem;
   width: 100%;
@@ -214,6 +234,7 @@
   text-align: center;
   margin-top: 1.4rem;
   display: flex;
+  cursor: pointer;
   flex-direction: column;
 }
 

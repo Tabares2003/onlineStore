@@ -1,21 +1,15 @@
-import { Grid, } from '@mui/material';
 import Hidden from '@mui/material/Hidden';
 import { MdOutlineShoppingCart } from "react-icons/md";
 import React, { useEffect, useState, useContext } from "react";
-import Carousel from 'react-bootstrap/Carousel';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import { HiChevronLeft } from "react-icons/hi2";
-import { HiChevronRight } from "react-icons/hi2";
 import { CarritoContext } from '../../../components/NavBar/CarritoProvider';
-import hombresCamisas from '../../../../data/camisetasHombres';
 import { useNavigate } from 'react-router-dom';
 
-import niñosCamisetas from '../../../../data/camisetasNiños';
 import mujeresCamisetas from '../../../../data/camisetasMujeres';
 export default function RecomendadoMujeres() {
 
@@ -71,7 +65,7 @@ export default function RecomendadoMujeres() {
         <section className="mujeresRecInicio">
             <div className="mainMasVendidos">
                 <div className='verTodo'>
-                   <p>Ver todo</p> 
+                    <p>Ver todo</p>
                 </div>
                 <div className="SubMainMasVendidos">
                     <Swiper slidesPerView={5} breakpoints={{
@@ -115,12 +109,14 @@ export default function RecomendadoMujeres() {
                                                 <img onClick={() => navigate(`/Producto/${producto.id}`)} src={isHovered ? producto.image : producto.image2} alt={`Imagen ${index + 1}`}
                                                     style={{ transform: isHovered ? 'scale(1.2)' : 'scale(1)', transition: 'transform .9s' }} />
                                                 {isHovered && (
-                                                    <div className='EnviarCarritoSwiper' onClick={() => agregarAlCarrito(producto)}>
-                                                        <div>
-                                                            <span>Agregar al carrito</span>
-                                                            <MdOutlineShoppingCart />
+                                                    <Hidden mdDown>
+                                                        <div className='EnviarCarritoSwiper'>
+                                                            <div>
+                                                                <span>Agregar al carrito</span>
+                                                                <MdOutlineShoppingCart />
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    </Hidden>
                                                 )}
                                                 {producto.offert && (
                                                     <div className='DescuentoSwiper'>
@@ -129,7 +125,13 @@ export default function RecomendadoMujeres() {
                                                 )}
                                             </div>
                                         </div>
-                                        <div className='DataProductsSwiper'>
+                                        <Hidden mdUp>
+                                            <div className='SendCarritoMobile' onClick={() => agregarAlCarrito(producto)}>
+                                                <span>Agregar al carrito</span>
+                                                <MdOutlineShoppingCart />
+                                            </div>
+                                        </Hidden>
+                                        <div className='DataProductsSwiper' onClick={() => navigate(`/Producto/${producto.id}`)}>
                                             <p>{producto.name}</p>
                                             <div>
                                                 <span style={{ textDecoration: producto.offert ? 'line-through' : 'none' }}>${producto.price}</span>

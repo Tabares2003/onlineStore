@@ -1,15 +1,8 @@
 // Buscar.jsx
-import { Button, Divider, Drawer, Grid, InputAdornment, InputBase, List, ListItem, ListItemText, Popover, TextField, Typography, useMediaQuery, useTheme } from '@mui/material';
 
-import { Link as RouterLink } from 'react-router-dom';
-import { IoSearch } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
-import hombresCamisas from '../../../data/camisetasHombres';
-import mujeresCamisetas from '../../../data/camisetasMujeres';
-import chaquetas from '../../../data/chaquetas';
-import niñosCamisetas from '../../../data/camisetasNiños';
 import { Link } from 'react-router-dom';
-import React, { useEffect, useState, useContext } from "react";
+import React from "react";
 import { FaChevronRight } from "react-icons/fa6";
 
 function MenuMobile({ onClose }) { 
