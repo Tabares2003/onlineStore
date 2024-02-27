@@ -15,7 +15,7 @@ function MenuMobile({ onClose }) {
         { title: 'PROMOCIONES', path: '/promociones' },
         { title: 'HISTORIAL', path: '/historial' },
     ];
-
+ 
 
     return (
         <div className='mainMenuMobile'>

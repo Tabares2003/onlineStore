@@ -147,7 +147,7 @@ function mainNav() {
             )}
 
             <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)} disableScrollLock={true}> 
-                <CarritoDrawer />
+                <CarritoDrawer setDrawerOpen={setDrawerOpen}/>
             </Drawer>
 
             <Drawer anchor='top' open={openDos} onClose={toggleDrawer(false)} disableScrollLock={true}>

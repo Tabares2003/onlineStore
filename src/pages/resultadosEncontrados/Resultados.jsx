@@ -6,7 +6,7 @@ import chaquetas from "../../../data/chaquetas";
 import niñosCamisetas from "../../../data/camisetasNiños";
 
 function Resultados() {
-    const { query } = useParams();
+    const { query } = useParams(); 
 
     const todosLosProductos = [...hombresCamisas, ...mujeresCamisetas, ...chaquetas, ...niñosCamisetas];
 

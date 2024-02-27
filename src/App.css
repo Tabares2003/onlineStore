@@ -683,7 +683,7 @@
   margin-bottom: 2rem;
   justify-content: space-between;
   align-items: center;
-
+  cursor: pointer;
 }
 
 .closeCarrito p {
@@ -771,7 +771,7 @@
 
 .mapCart {
   min-height: 390px;
-  max-height: 510px;
+  max-height: 470px;
   overflow-y: auto;
   /* Permite el desplazamiento vertical si el contenido supera el alto máximo */
 }
@@ -809,6 +809,7 @@
   margin-bottom: 0 !important;
   font-size: 20px;
   font-weight: 600;
+  color: black !important;
 }
 .buttonsCart{
   display: flex;
@@ -831,5 +832,67 @@
   background-color: white;
   color: black;
   border: 2px solid black;
+}
+.buttonsCart a{
+  width: 100%;
+}
+.bottomDrawerCart{
+  width: 1090%;
+  display: flex;
+  flex-direction: column;
+}
+.carritoVacio{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.carritoVacio p{
+  font-weight: 600;
+  font-size: 19px;
+}
+.carritoVacio button{
+  width: 100%;
+  text-align: center;
+  color: white;
+  background-color: black;
+  font-size: 19px;
+  border: 2px solid black;
+  padding-top: .8rem;
+  padding-bottom: .8rem;
+}
+.carritoVacio button:hover{
+  color: black;
+  background-color: white;
+}
+.carritoVacio a{
+  width: 100%;
+}
+.titleTePuedeInteresar{
+  width: 100%;
+  color: black;
+}
+.titleTePuedeInteresar p{
+  margin-bottom: 0 !important;
+  font-size: 18px;
+  font-weight: 600;
+}
+.SwiperCarruselKart{
+  margin-top: 1rem;
+}
+.SwiperCarruselKart a{
+  width: 100%;
+}
+.MainTep{
+  display: flex;
+  gap: 1rem;
+}
+.MainTep img{
+ width: 100px;
+}
+.dataTePodríaInt{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 /*Fin estilos carrito right */

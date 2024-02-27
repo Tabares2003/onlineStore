@@ -11,3 +11,7 @@ body{
 *{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+a {
+  color: inherit; /* Cambia el color del texto al color heredado */
+  text-decoration: none; /* Elimina la línea debajo del texto */
+}
