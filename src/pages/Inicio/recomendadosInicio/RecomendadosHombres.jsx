@@ -10,6 +10,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { CarritoContext } from '../../../components/NavBar/CarritoProvider';
 import hombresCamisas from '../../../../data/camisetasHombres';
 import { useNavigate } from 'react-router-dom';
+import CarritoDrawer from '../../../components/NavBar/CarritoDrawer';
 
 
 
@@ -31,34 +32,13 @@ export default function RecomendadosHombres() {
         if (carrito.find(item => item.id === producto.id)) {
             setDrawerOpen(true);
         } else {
-            setCarrito((carritoActual) => [...carritoActual, { ...producto, cantidad: 1 }]);
-            setDrawerOpen(true);
+            setCarrito((carritoActual) => [...carritoActual, { ...producto, cantidad: 1 }], () => {
+                // Abre el drawer después de que el estado del carrito se haya actualizado
+                setDrawerOpen(true);
+            });
         }
-    }
-
-    //Función para sumar local de todos los productos en carrito
-    const calcularTotal = () => {
-        return carrito.reduce((total, producto) => total + (Number(producto.price) * producto.cantidad), 0);
-    }
-
-    // Función para actualizar la cantidad de un producto en el carrito
-    const actualizarCantidad = (idProducto, nuevaCantidad) => {
-        setCarrito((carritoActual) => {
-            const nuevoCarrito = carritoActual.map((producto) =>
-                producto.id === idProducto ? { ...producto, cantidad: nuevaCantidad } : producto
-            );
-            localStorage.setItem('carrito', JSON.stringify(nuevoCarrito));
-            return nuevoCarrito;
-        });
-    }
-
-
-    // Función para eliminar un producto del carrito
-    const eliminarDelCarrito = (idProducto) => {
-        const nuevoCarrito = carrito.filter((producto) => producto.id !== idProducto);
-        setCarrito(nuevoCarrito);
-        localStorage.setItem('carrito', JSON.stringify(nuevoCarrito));
-    }
+    };
+ 
 
 
 
@@ -112,7 +92,7 @@ export default function RecomendadosHombres() {
                                                     style={{ transform: isHovered ? 'scale(1.2)' : 'scale(1)', transition: 'transform .9s' }} />
                                                 {isHovered && (
                                                     <Hidden mdDown>
-                                                        <div className='EnviarCarritoSwiper'>
+                                                        <div className='EnviarCarritoSwiper'  onClick={() => agregarAlCarrito(producto)}>
                                                             <div>
                                                                 <span>Agregar al carrito</span>
                                                                 <MdOutlineShoppingCart />
@@ -147,20 +127,8 @@ export default function RecomendadosHombres() {
                     </Swiper>
                 </div>
 
-                <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-                    <List>
-                        {carrito.map((producto) => (
-                            <ListItem key={producto.id}>
-                                <ListItemText primary={producto.name} secondary={`Cantidad: ${producto.cantidad}`} />
-                                <button onClick={() => actualizarCantidad(producto.id, producto.cantidad + 1)} disabled={producto.cantidad >= producto.stock}>+</button>
-                                <button onClick={() => actualizarCantidad(producto.id, producto.cantidad - 1)} disabled={producto.cantidad <= 1}>-</button>
-                                <button onClick={() => eliminarDelCarrito(producto.id)}>Eliminar</button>
-                            </ListItem>
-                        ))}
-                        <ListItem>
-                            <ListItemText primary={`Total: ${calcularTotal()}`} />
-                        </ListItem>
-                    </List>
+                <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)} disableScrollLock={true}>
+                    <CarritoDrawer/>
                 </Drawer>
             </div>
         </section>

@@ -1,27 +1,32 @@
 /*Inicio estilos navbar*/
-.mobileNav{
+.mobileNav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
 }
-.iconMenuNav svg{
+
+.iconMenuNav svg {
   color: white;
   font-size: 30px;
 }
-.logoNav img{
+
+.logoNav img {
   width: 70px;
   margin-left: 1.6rem;
 }
+
 .muiNav {
   background-color: black;
 }
-.iconsMobileNav{
+
+.iconsMobileNav {
   display: flex;
   gap: 2rem;
   color: white;
 }
-.iconsMobileNav svg{
+
+.iconsMobileNav svg {
   font-size: 30px;
   color: white;
 }
@@ -121,26 +126,29 @@
 
 
 /*Inicio estilos Recomendados inicio*/
-.SendCarritoMobile{
+.SendCarritoMobile {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   background-color: black;
-  margin-top: 1.5rem; 
+  margin-top: 1.5rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
   gap: .5rem;
 }
-.SendCarritoMobile span{
+
+.SendCarritoMobile span {
   margin: 0 !important;
   font-size: 13px;
   font-weight: 600;
 }
-.SendCarritoMobile svg{
+
+.SendCarritoMobile svg {
   font-size: 18px;
 }
+
 .RecomendadosInicioTop {
   margin-top: 1rem;
   width: 100%;
@@ -487,7 +495,7 @@
 
 .itemBusc {
   position: relative;
-  padding: 10px; 
+  padding: 10px;
 }
 
 .itemBusc img {
@@ -600,53 +608,228 @@
 /*Fin estilos buscar component*/
 
 /*Inicio estilos ver más*/
-.verTodo{
+.verTodo {
   width: 100%;
   text-align: end;
 }
-.verTodo p{
+
+.verTodo p {
   margin-bottom: 0 !important;
   margin-right: 2rem;
   font-weight: 600;
   cursor: pointer;
   font-size: 18px;
 }
-.verTodo p:hover{
+
+.verTodo p:hover {
   text-decoration: underline;
 }
 
 /*Fin estilos ver más*/
 
-.mainMenuMobile{
+
+/*Inicio estilos menú para mobiles left */
+.mainMenuMobile {
   display: flex;
   flex-direction: column;
-  padding: 2rem; 
+  padding: 1rem;
 }
-.mainMenuMobile div{
+
+.mainMenuMobile div {
   align-items: center;
   text-align: center;
-  display: flex; 
+  display: flex;
   justify-content: space-between;
   width: 270px;
   margin-bottom: 1rem;
   padding-bottom: 1rem;
   border-bottom: 0.5px solid rgba(128, 128, 128, 0.3);
 }
-.mainMenuMobile div p{
+
+.mainMenuMobile div p {
   font-weight: 600;
   font-size: 22px;
   color: black;
   text-decoration: none;
   margin-bottom: 0 !important;
 }
-.mainMenuMobile div p:hover{
+
+.mainMenuMobile div p:hover {
   text-decoration: underline;
 }
-.mainMenuMobile div svg{
+
+.mainMenuMobile div svg {
   font-size: 22px;
   color: black;
 }
-.mainMenuMobile  a{
+
+.mainMenuMobile a {
   text-decoration-line: none;
   text-decoration: none;
 }
+
+/*Fin estilos menú para mobiles left */
+
+/*Inicio estilos carrito right */
+.menuCarritoRight {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  width: 360px;
+}
+
+.closeCarrito {
+  display: flex;
+  margin-bottom: 2rem;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.closeCarrito p {
+  margin-bottom: 0 !important;
+  font-weight: 600;
+  font-size: 22px;
+  color: black;
+  text-decoration: none;
+  margin-bottom: 0 !important;
+}
+
+.closeCarrito svg {
+  font-size: 22px;
+  color: black;
+}
+
+.itemTopCarrito {
+  display: flex;
+  background-color: white;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.itemTopCarrito img {
+  width: 110px;
+}
+
+.subItemCarrito {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.CantCarrito {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+}
+
+.itemTopCarrito p {
+  margin-bottom: 0 !important;
+}
+
+.deleteCartItem {
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.deleteCartItem svg {
+  font-size: 22px;
+}
+
+.namCarritoP {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.PricesItemCart {
+  display: flex;
+  gap: .5rem;
+}
+
+.tachadoCart {
+  text-decoration: line-through;
+}
+
+.offertCart {
+  color: red;
+}
+
+.PricesItemCart p {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.CantCarrito button {
+  border: none;
+  background-color: white;
+}
+
+.CantCarrito button svg {
+  font-size: 22px;
+
+}
+
+.mapCart {
+  min-height: 390px;
+  max-height: 510px;
+  overflow-y: auto;
+  /* Permite el desplazamiento vertical si el contenido supera el alto máximo */
+}
+
+/* Estilos para la barra de desplazamiento */
+.mapCart::-webkit-scrollbar {
+  width: 8px;
+  /* Ancho de la barra de desplazamiento */
+}
+
+/* Estilo para el pulgar (la parte móvil) de la barra de desplazamiento */
+.mapCart::-webkit-scrollbar-thumb {
+  background-color: rgb(200, 200, 200);
+  /* Color del pulgar */
+  border-radius: 4px;
+  /* Redondeo de las esquinas del pulgar */
+}
+
+/* Estilo para la pista (la parte inmóvil) de la barra de desplazamiento */
+.mapCart::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  /* Color de la pista */
+}
+
+/* Oculta los botones de la barra de desplazamiento */
+.mapCart::-webkit-scrollbar-button {
+  display: none;
+}
+.subTotCart{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.3rem;
+}
+.subTotCart p{
+  margin-bottom: 0 !important;
+  font-size: 20px;
+  font-weight: 600;
+}
+.buttonsCart{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+}
+.buttonsCart button{
+  width: 100%;
+  font-weight: 700;
+  color: white;
+  border: 2px solid black;
+  background-color: black;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+.buttonsCart button:hover{
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+}
+/*Fin estilos carrito right */

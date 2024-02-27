@@ -106,11 +106,11 @@ function mainNav() {
 
                     <div className='iconsMobileNav'>
                         <div>
-                            <IoSearch onClick={toggleDrawer(true)}/>
+                            <IoSearch onClick={toggleDrawer(true)} />
                         </div>
                         <div className='cartNav'>
                             <div className='cartNavIcon'>
-                                <MdOutlineShoppingCart onClick={abrirDrawer}/>
+                                <MdOutlineShoppingCart onClick={abrirDrawer} />
                                 <span className='cartCount'>{carrito.length}</span>
                             </div>
                         </div>
@@ -146,7 +146,7 @@ function mainNav() {
                 </div>
             )}
 
-            <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+            <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)} disableScrollLock={true}> 
                 <CarritoDrawer />
             </Drawer>
 
@@ -155,7 +155,7 @@ function mainNav() {
             </Drawer>
 
             <Drawer anchor="left" open={drawerOpenDos} onClose={() => setDrawerOpenDos(false)}>
-                <MenuMobile onClose={handleDrawerCloseDos}/> 
+                <MenuMobile onClose={handleDrawerCloseDos} />
             </Drawer>
         </nav>
     );

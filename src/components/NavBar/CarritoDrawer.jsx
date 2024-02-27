@@ -4,10 +4,15 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { IoMdMenu } from "react-icons/io";
 import React, { useEffect, useState, useContext } from "react";
 import Buscar from './Buscar';
+import { IoClose } from "react-icons/io5";
 import { useLocation } from 'react-router-dom';
-import { CarritoContext } from "./CarritoProvider"; 
+import { CarritoContext } from "./CarritoProvider";
 import { AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText, useMediaQuery, useTheme, Button, Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { IoAddOutline } from "react-icons/io5";
+import { IoRemoveOutline } from "react-icons/io5";
+
+
 function CarritoDrawer() {
 
 
@@ -50,24 +55,6 @@ function CarritoDrawer() {
         }
     }, []);
 
-    //funcion para abrir drawer cuando está en mobiles, left
-    const handleDrawerOpen = () => {
-        document.body.style.overflow = 'hidden';
-        setOpen(true);
-    };
-
-    //funcion para cerrar drawer cuando está en mobiles, left
-    const handleDrawerClose = () => {
-        document.body.style.overflow = 'unset';
-        setOpen(false);
-    };
-
-    //funcion para abrir drawer del carrito
-    const abrirDrawer = () => {
-        setDrawerOpen(true);
-    }
-
-
     //Función para sumar local de todos los productos en carrito
     const calcularTotal = () => {
         return carrito.reduce((total, producto) => total + (Number(producto.price) * producto.cantidad), 0);
@@ -91,30 +78,52 @@ function CarritoDrawer() {
         localStorage.setItem('carrito', JSON.stringify(nuevoCarrito));
     }
 
-    const [openDos, setOpenDos] = React.useState(false);
+    const calcularCantidadTotal = () => {
+        return carrito.reduce((total, producto) => total + producto.cantidad, 0);
+    }
 
-    const toggleDrawer = (openDos) => (event) => {
-        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-            return;
-        }
-        setOpenDos(openDos);
-    };
+    return (
+        <div className="menuCarritoRight">
+            <div className="closeCarrito">
+                <p>CARRITO ({calcularCantidadTotal()})</p> {/* Muestra la cantidad total de productos aquí */}
+                <IoClose />
+            </div>
+            <div className="mapCart">
+                {carrito.map((producto) => (
+                    <div className="itemTopCarrito" key={producto.id}>
+                        <img src={producto.image2} alt="" />
+                        <div className="subItemCarrito">
+                            <div className="dataItemCart">
+                                <p className="namCarritoP">{producto.name}</p>
+                                <div className="PricesItemCart">
+                                    <p className={`priceCart ${producto.offert && 'tachadoCart'}`}>${producto.price}</p>
+                                    {producto.offert && <p className="offertCart">${producto.offert}</p>}
+                                </div>
+                            </div>
+                            <div className="CantCarrito">
+                                <button onClick={() => actualizarCantidad(producto.id, producto.cantidad - 1)} disabled={producto.cantidad <= 1}><IoRemoveOutline /></button>
+                                <p>{producto.cantidad}</p>
+                                <button onClick={() => actualizarCantidad(producto.id, producto.cantidad + 1)} disabled={producto.cantidad >= producto.stock}><IoAddOutline /></button>
+                                <div className="deleteCartItem" onClick={() => eliminarDelCarrito(producto.id)}><IoClose /></div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
 
 
-    return ( 
-        <List>
-            {carrito.map((producto) => (
-                <ListItem key={producto.id}>
-                    <ListItemText primary={producto.name} secondary={`Cantidad: ${producto.cantidad}`} />
-                    <button onClick={() => actualizarCantidad(producto.id, producto.cantidad + 1)} disabled={producto.cantidad >= producto.stock}>+</button>
-                    <button onClick={() => actualizarCantidad(producto.id, producto.cantidad - 1)} disabled={producto.cantidad <= 1}>-</button>
-                    <button onClick={() => eliminarDelCarrito(producto.id)}>Eliminar</button>
-                </ListItem>
-            ))}
-            <ListItem>
-                <ListItemText primary={`Total: ${calcularTotal()}`} />
-            </ListItem>
-        </List> 
+            <div className="subTotCart">
+                <p>Subtotal</p>
+                <p>${calcularTotal()}</p>
+            </div>
+
+            <div className="buttonsCart">
+                <button>REALIZAR PEDIDO</button>
+                <button>VER CARRITO</button>
+            </div>
+
+
+        </div>
     );
 }
 
