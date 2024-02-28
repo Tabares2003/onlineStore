@@ -13,14 +13,15 @@ import {
     Button,
 } from "@mui/material";
 import hombresCamisas from "../../../data/camisetasHombres";
+import mujeresCamisetas from "../../../data/camisetasMujeres";
 import Titulo from "../../components/Titulo";
 import BreadCumb from "../../components/CategoríasComponents/BreadCumb";
 import BannersCategorias from "../../components/CategoríasComponents/BannersCategorías";
 import LeftCategorias from "../../components/CategoríasComponents/LeftCategorías";
-import { useState } from 'react';
 import FiltrosCategoriasLeft from "../../components/CategoríasComponents/FiltrosCategoriasLeft";
+import { useState } from 'react';
+export default function Mujeres() {
 
-export default function Hombres() {
 
     const [rangoPrecio, setRangoPrecio] = useState([0, 400000]);
 
@@ -36,15 +37,16 @@ export default function Hombres() {
 
     let productosFiltrados;
     if (filtro === 'enExistencia') {
-        productosFiltrados = hombresCamisas.filter(producto => producto.stock > 0);
+        productosFiltrados = mujeresCamisetas.filter(producto => producto.stock > 0);
     } else if (filtro === 'agotados') {
-        productosFiltrados = hombresCamisas.filter(producto => producto.stock === 0);
+        productosFiltrados = mujeresCamisetas.filter(producto => producto.stock === 0);
     } else {
-        productosFiltrados = hombresCamisas;
+        productosFiltrados = mujeresCamisetas;
     }
 
     // Filtra los productos por precio
     productosFiltrados = productosFiltrados.filter(producto => producto.price >= rangoPrecio[0] && producto.price <= rangoPrecio[1]);
+
     //Consts measured, 80% and in md 100%.
     const theme = useTheme();
     const isMdDown = useMediaQuery(theme.breakpoints.down('md'));
@@ -56,23 +58,22 @@ export default function Hombres() {
                     <div className="BreadCumbCat">
                         <BreadCumb />
                     </div>
-                    <BannersCategorias />
 
+                    <BannersCategorias />
                     <div className="CategoríasMain">
-                        <div>
-                            <LeftCategorias />
-                           <FiltrosCategoriasLeft onFiltroChange={handleFiltroChange} onRangoPrecioChange={handleRangoPrecioChange} />
-                        </div>
-                        <div>
-                            {productosFiltrados.map((producto) => (
-                                <div key={producto.id}>
-                                    <h2>{producto.name}</h2>
-                                    <p>{producto.price}</p>
-                                </div>
-                            ))}
-                        </div>
+                        <LeftCategorias />
                     </div>
 
+                    <div style={{ marginTop: '1rem' }}>
+                        <Titulo />
+                        <FiltrosCategoriasLeft onFiltroChange={handleFiltroChange} onRangoPrecioChange={handleRangoPrecioChange} />
+                        {productosFiltrados.map((producto) => (
+                            <div key={producto.id}>
+                                <h2>{producto.name}</h2>
+                                <p>{producto.price}</p>
+                            </div>
+                        ))}
+                    </div>
                 </Grid>
             </Grid>
         </>

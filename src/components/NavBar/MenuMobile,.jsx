@@ -9,9 +9,9 @@ function MenuMobile({ onClose }) {
 
     const menuItems = [
         { title: 'INICIO', path: '/' },
-        { title: 'HOMBRES', path: '/hombres' },
+        { title: 'HOMBRES', path: '/Hombres' },
         { title: 'NIÑOS', path: '/niños' },
-        { title: 'MUJERES', path: '/mujeres' },
+        { title: 'MUJERES', path: '/Mujeres' },
         { title: 'PROMOCIONES', path: '/promociones' },
         { title: 'HISTORIAL', path: '/historial' },
     ];
