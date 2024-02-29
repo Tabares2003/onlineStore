@@ -15,10 +15,10 @@ import {
 import hombresCamisas from "../../../data/camisetasHombres";
 import mujeresCamisetas from "../../../data/camisetasMujeres";
 import Titulo from "../../components/Titulo";
-import BreadCumb from "../../components/CategoríasComponents/BreadCumb";
-import BannersCategorias from "../../components/CategoríasComponents/BannersCategorías";
-import LeftCategorias from "../../components/CategoríasComponents/LeftCategorías";
-import FiltrosCategoriasLeft from "../../components/CategoríasComponents/FiltrosCategoriasLeft";
+import BreadCumb from "../../components/CategoríasComponents/TopComponents/BreadCumb";
+import BannersCategorias from "../../components/CategoríasComponents/TopComponents/BannersCategorías";
+import LeftCategorias from "../../components/CategoríasComponents/LeftComponents/LeftCategorías";
+import FiltrosCategoriasLeft from "../../components/CategoríasComponents/LeftComponents/FiltrosCategoriasLeft";
 import { useState } from 'react';
 export default function Mujeres() {
 
