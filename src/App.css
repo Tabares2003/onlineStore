@@ -1370,6 +1370,8 @@
   margin-left: 15px;
 }
 
+
+
 .tresVista {
   margin-left: 8px;
 } 
@@ -1388,6 +1390,62 @@
 }
 
 /*Fin estils Categorías*/
+
+
+
+/*Inicio estilos filtros disp mobiles*/
+
+.FiltersMobile{
+ width: 100%;
+ display: flex;
+ justify-content: space-between;
+}
+.firstFiltersMobile{
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.firstFiltersMobile svg{
+  font-size: 30px;
+  color: black;
+}
+.firstFiltersMobile p{
+  font-size: 18px;
+  font-weight: 600;
+  color: black;
+}
+.SecFiltersMobile{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.SecFiltersMobile div{ 
+  border: 1px solid black;
+  padding: 1px;
+  align-items: center;
+  cursor: pointer;
+  justify-content: center;
+  text-align: center;
+}
+.SecFiltersMobile div svg{
+  font-size: 25px;
+}
+
+.dosVistaMobile {
+  margin-left: 11px;
+}
+.thirdFiltersMobile{
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+}
+.thirdFiltersMobile p{
+  font-size: 18px;
+  font-weight: 600;
+  color: black;
+}
+/*Fin estilos filtros disp mobiles*/
 
 
 /*Inicio estils hombres*/

@@ -5,9 +5,11 @@ import { IoMenuOutline } from "react-icons/io5";
 import { LuTally2 } from "react-icons/lu";
 import { LuTally3 } from "react-icons/lu";
 import { LuTally4 } from "react-icons/lu";
-import { IconButton } from '@mui/material';
+import { Hidden, IconButton } from '@mui/material';
 import { Select, MenuItem, createTheme, ThemeProvider } from '@mui/material';
+import { CiFilter } from "react-icons/ci";
 
+import { IoChevronDownOutline } from "react-icons/io5";
 
 
 function TopFiltros({ onCantidadPorPaginaChange, onOrdenChange, onEstiloChange }) {
@@ -45,9 +47,9 @@ function TopFiltros({ onCantidadPorPaginaChange, onOrdenChange, onEstiloChange }
         components: {
             MuiOutlinedInput: {
                 styleOverrides: {
-                    root: { 
-                        color:'black',
-                        fontWeight:'500', 
+                    root: {
+                        color: 'black',
+                        fontWeight: '500',
                         borderRadius: 0,
                         height: '46px',
                         '&:hover .MuiOutlinedInput-notchedOutline': {
@@ -86,9 +88,9 @@ function TopFiltros({ onCantidadPorPaginaChange, onOrdenChange, onEstiloChange }
             MuiOutlinedInput: {
                 styleOverrides: {
                     root: {
-                        color:'black',
-                        fontWeight:'500', 
-                        width:'200px',
+                        color: 'black',
+                        fontWeight: '500',
+                        width: '200px',
                         borderRadius: 0,
                         height: '46px',
                         '&:hover .MuiOutlinedInput-notchedOutline': {
@@ -125,61 +127,84 @@ function TopFiltros({ onCantidadPorPaginaChange, onOrdenChange, onEstiloChange }
     return (
         <div className='TopFilters'>
 
-            <div className='TopFiltersDiv'>
-                <div className='DivVerComo'>
-                    <div className='TitleVerComo'>
-                        <p>VER COMO</p>
+            <Hidden mdDown>
+
+
+                <div className='TopFiltersDiv'>
+                    <div className='DivVerComo'>
+                        <div className='TitleVerComo'>
+                            <p>VER COMO</p>
+                        </div>
+                        <div className='IconsVerComo'>
+                            <div onClick={() => handleEstiloChange('EstilosPrimercheck')}>
+                                <IoMenuOutline color={estiloSeleccionado === 'EstilosPrimercheck' ? 'black' : '#767677'} />
+                            </div>
+                            <div onClick={() => handleEstiloChange('EstilosSegundocheck')}>
+                                <LuTally2 className='dosVista' color={estiloSeleccionado === 'EstilosSegundocheck' ? 'black' : '#767677'} />
+                            </div>
+                            <div onClick={() => handleEstiloChange('EstilosTercercheck')}>
+                                <LuTally3 className='tresVista' color={estiloSeleccionado === 'EstilosTercercheck' ? 'black' : '#767677'} />
+                            </div>
+                            <div onClick={() => handleEstiloChange('EstilosCuartaCheck')}>
+                                <LuTally4 className='cuartaVista' color={estiloSeleccionado === 'EstilosCuartaCheck' ? 'black' : '#767677'} />
+                            </div>
+                        </div>
                     </div>
-                    <div className='IconsVerComo'>
+                </div>
+
+                <div className='TopFiltersDivRight'>
+                    <div className='elementsPorPag'>
+                        <div>
+                            <p>ELEMENTOS POR PAGINA</p>
+                        </div>
+                        <ThemeProvider theme={theme}>
+                            <Select value={cantidadPorPagina} onChange={handleCantidadPorPaginaChange}>
+                                <MenuItem value={10}>10</MenuItem>
+                                <MenuItem value={20}>20</MenuItem>
+                                <MenuItem value={30}>30</MenuItem>
+                            </Select>
+                        </ThemeProvider>
+                    </div>
+
+                    <div className='elementsPorPag'>
+                        <div>
+                            <p>ORDENAR</p>
+                        </div>
+                        <ThemeProvider theme={themeDos}>
+                            <Select value={orden} onChange={handleOrdenChange}>
+                                <MenuItem value={'Alfabéticamente, A-Z'}>Alfabéticamente, A-Z</MenuItem>
+                                <MenuItem value={'Alfabéticamente, Z-A'}>Alfabéticamente, Z-A</MenuItem>
+                                <MenuItem value={'Precio, menor a mayor'}>Precio, menor a mayor</MenuItem>
+                                <MenuItem value={'Precio, mayor a menor'}>Precio, mayor a menor</MenuItem>
+                            </Select>
+                        </ThemeProvider>
+                    </div>
+                </div>
+
+            </Hidden>
+
+            <Hidden mdUp>
+                <div className='FiltersMobile'>
+                    <div className='firstFiltersMobile'>
+                        <CiFilter />
+                        <p>Filtrar</p>
+                    </div>
+
+                    <div className='SecFiltersMobile'>
+                        <div onClick={() => handleEstiloChange('EstilosSegundocheck')}>
+                            <LuTally2 className='dosVistaMobile' color={estiloSeleccionado === 'EstilosSegundocheck' ? 'black' : '#767677'} />
+                        </div>
                         <div onClick={() => handleEstiloChange('EstilosPrimercheck')}>
                             <IoMenuOutline color={estiloSeleccionado === 'EstilosPrimercheck' ? 'black' : '#767677'} />
                         </div>
-                        <div onClick={() => handleEstiloChange('EstilosSegundocheck')}>
-                            <LuTally2 className='dosVista' color={estiloSeleccionado === 'EstilosSegundocheck' ? 'black' : '#767677'} />
-                        </div>
-                        <div onClick={() => handleEstiloChange('EstilosTercercheck')}>
-                            <LuTally3 className='tresVista' color={estiloSeleccionado === 'EstilosTercercheck' ? 'black' : '#767677'} />
-                        </div>
-                        <div onClick={() => handleEstiloChange('EstilosCuartaCheck')}>
-                            <LuTally4 className='cuartaVista' color={estiloSeleccionado === 'EstilosCuartaCheck' ? 'black' : '#767677'} />
-                        </div>
+                    </div>
+
+                    <div className='thirdFiltersMobile'>
+                        <p>Ordenar por</p>
+                        <IoChevronDownOutline />
                     </div>
                 </div>
-
-
-            </div>
-            <div className='TopFiltersDivRight'>
-                <div className='elementsPorPag'>
-                    <div>
-                        <p>ELEMENTOS POR PAGINA</p>
-                    </div>
-                    <ThemeProvider theme={theme}>
-                        <Select value={cantidadPorPagina} onChange={handleCantidadPorPaginaChange}>
-                            <MenuItem value={10}>10</MenuItem>
-                            <MenuItem value={20}>20</MenuItem>
-                            <MenuItem value={30}>30</MenuItem>
-                        </Select>
-                    </ThemeProvider>
-                </div>
-
-                <div className='elementsPorPag'>
-                    <div>
-                        <p>ORDENAR</p>
-                    </div>
-                    <ThemeProvider theme={themeDos}>
-                        <Select value={orden} onChange={handleOrdenChange}>
-                            <MenuItem value={'Alfabéticamente, A-Z'}>Alfabéticamente, A-Z</MenuItem>
-                            <MenuItem value={'Alfabéticamente, Z-A'}>Alfabéticamente, Z-A</MenuItem>
-                            <MenuItem value={'Precio, menor a mayor'}>Precio, menor a mayor</MenuItem>
-                            <MenuItem value={'Precio, mayor a menor'}>Precio, mayor a menor</MenuItem>
-                        </Select>
-                    </ThemeProvider>
-                </div>
-            </div>
-
-
-
-
+            </Hidden>
 
 
 
