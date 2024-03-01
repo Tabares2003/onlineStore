@@ -945,24 +945,27 @@
 
 
 /*Inicio estils BreadCruymb*/
-.BreadCumbCat{
+.BreadCumbCat {
   margin-top: 3rem;
 }
-.breadCat p{
+
+.breadCat p {
   margin-bottom: 0 !important;
   text-decoration-line: none !important;
-  color: #767677; 
+  color: #767677;
   font-size: 18px;
   font-weight: 500;
 }
-.breadCat a{
+
+.breadCat a {
   margin-bottom: 0 !important;
   text-decoration-line: none !important;
-  color: #767677; 
+  color: #767677;
   font-size: 18px;
   font-weight: 500;
-} 
-.breadCat a p:hover{
+}
+
+.breadCat a p:hover {
   color: black;
   text-decoration: underline;
 }
@@ -970,149 +973,418 @@
 /*Fin estils BreadCruymb*/
 
 /*Inicio estils Categorías*/
-.CarruselCategorías{
+.CarruselCategorías {
   margin-top: 2.5rem;
   margin-bottom: 1rem;
 }
-.CategoríasMain{
+
+.CategoríasMain {
   display: flex;
   width: 100%;
   gap: 1rem;
   margin-top: 1rem;
 }
-.activeCategoria { 
+
+.activeCategoria {
   display: flex;
-  align-items: center; 
+  align-items: center;
 }
 
-.leftCatTitle p{
+.leftCatTitle p {
   font-weight: 600;
   font-size: 20px;
 }
-.leftCatTitle{
+
+.leftCatTitle {
   border-bottom: 0.5px solid rgba(128, 128, 128, 0.6);
   width: 90%;
 }
-.categoriasLeftList{
+
+.categoriasLeftList {
   margin-top: 1rem;
 }
-.inactiveCategoría p{
+
+.inactiveCategoría p {
   font-weight: 400;
   font-size: 18px;
   color: #767677;
 }
-.inactiveCategoría p:hover{
+
+.inactiveCategoría p:hover {
   color: black;
 }
-.activeCategoria p{
+
+.activeCategoria p {
   font-weight: 500;
   font-size: 18px;
   color: black;
 }
-.categoriasLeftList svg{
+
+.categoriasLeftList svg {
   font-size: 20px;
   color: black;
 }
-.DispChecks{
+
+.DispChecks {
   margin-top: 1rem;
 }
-.DisponibilidadMain{
+
+.DisponibilidadMain {
   margin-top: 1.2rem;
   margin-bottom: 2rem;
 }
-.divCheckMain{
-  display: flex; 
+
+.divCheckMain {
+  display: flex;
   align-items: center;
   margin-left: -.7rem;
-  margin-bottom:  -8px;
+  margin-bottom: -8px;
 }
-.divCheckMain label{
+
+.divCheckMain label {
   font-weight: 400;
   font-size: 18px;
   color: #767677;
 }
- 
 
-.LeftDispTitle p{
+
+.LeftDispTitle p {
   font-weight: 600;
   font-size: 20px;
 }
-.LeftDispTitle{
+
+.LeftDispTitle {
   border-bottom: 0.5px solid rgba(128, 128, 128, 0.6);
   width: 90%;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
-.SliderPrecio{
+
+.SliderPrecio {
   width: 88%;
 }
-.RangoPrice{
-  width: 90%; 
+
+.RangoPrice {
+  width: 90%;
   align-items: center;
   display: flex;
   justify-content: space-between;
 }
-.RangoPrice p{
+
+.RangoPrice p {
   font-weight: 500;
   font-size: 17px;
 }
-.RangoDiv{
+
+.RangoDiv {
   width: 93px;
   padding: 1rem;
   border: 1px solid black;
 }
 
 
-.EstilosPrimercheck{
-  color: red;
+.EstilosCheck {
+  margin-top: 2.4rem;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.EstilosSegundocheck{
+
+
+
+
+/*Inicios primer estilo categorías*/
+.primerStyleMain {
+  display: flex;
+  flex-direction: column !important;
+  width: 100%;
+}
+
+.EstilosPrimercheck {
+  display: flex;
+  margin-top: 10px;
+  width: 100%;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 0.5px solid rgba(128, 128, 128, 0.3);
+}
+
+.EstilosPrimercheck .imgPrimerEstilo {
+  cursor: pointer;
+  position: relative;
+  /* Añade esta línea */
+}
+
+.EstilosPrimercheck .descuento {
+  position: absolute;
+  /* Añade esta línea */
+  top: 0;
+  /* Añade esta línea */
+  left: 0;
+  /* Añade esta línea */
+  font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.8);
+  /* Añade esta línea si quieres un fondo semi-transparente */
+  color: white;
+  /* Añade esta línea si quieres texto blanco */
+  padding: 5px;
+  /* Añade esta línea para dar un poco de espacio alrededor del texto */
+}
+
+.EstilosPrimercheck img {
+  width: 210px;
+  margin-bottom: 2rem;
+}
+
+.EstilosPrimercheck h2 {
+  font-size: 19px;
+  color: black;
+  font-weight: 500;
+}
+
+.EstilosPrimercheck h2:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.dartaPrimerEstilo div {
+  display: flex;
+  gap: 1rem;
+}
+
+.dartaPrimerEstilo div p {
+  font-size: 19px;
+  color: black;
+  font-weight: 500;
+}
+
+.offerPrimerStyle {
+  color: red !important;
+}
+
+.EstilosPrimercheck button {
+  margin-top: 1rem;
+  background-color: black;
+  color: white;
+  font-weight: 600;
+  padding: 13px 20px;
+  font-size: 15px;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  border: 1px solid black;
+}
+
+.EstilosPrimercheck button svg {
+  font-size: 19px;
+}
+
+.EstilosPrimercheck button:hover {
+  background-color: white;
+  color: black
+}
+
+/*Fin primer estilo categorías*/
+
+/*Inicio segundo estilo categorías*/
+
+.EstilosSegundocheck {
   color: green;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.EstilosTercercheck{
+
+/*Fin segundo estilo categorías*/
+
+/*Inicio Cuarto estilo categorías*/
+.itemCuartoEst {
+  position: relative;
+  padding: 10px;
+  margin-bottom: 1rem;
+}
+
+.itemCuartoEst:hover .hoverBox {
+  display: block; 
+}
+
+.hoverBox {
+  display: none;
+  position: absolute;
+  top: 0;
+  margin-top: 18px;
+  margin-right: 18px;
+  right: 0;
+  background-color: black;
+  cursor: pointer; 
+  color: white; 
+  padding:  10px;
+  text-align: center;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center; 
+}
+
+.hoverBox svg{
+  font-size: 19px;
+}
+
+.dataCuartEst {
+  text-align: center;
+}
+
+.divdatCuarEst {
+  text-align: center;
+}
+
+.divdatCuarEst p {
+  font-size: 18px;
+  color: black;
+  cursor: pointer;
+  font-weight: 500;
+  margin: 0 !important;
+}
+
+.pricesCuartEst {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pricesCuartEst h6 {
+  font-size: 18px;
+  color: red;
+  font-weight: 600;
+  margin: 0 !important;
+}
+
+.pricesCuartEst p {
+  font-size: 18px;
+  font-weight: 600;
+  color: black;
+  margin: 0 !important;
+}
+
+.itemCuartoEst {
+  position: relative;
+  padding: 10px;
+}
+
+.itemCuartoEst .descuento {
+  position: absolute;
+  /* Añade esta línea */
+  top: 0;
+  /* Añade esta línea */
+  left: 0;
+  /* Añade esta línea */
+  font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.8);
+  /* Añade esta línea si quieres un fondo semi-transparente */
+  color: white;
+  /* Añade esta línea si quieres texto blanco */
+  padding: 5px;
+  /* Añade esta línea para dar un poco de espacio alrededor del texto */
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.itemCuartoEst img {
+  width: 100%;
+  cursor: pointer;
+}
+.addCartCuartStyle{
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 1rem;
+  cursor: pointer;
+  padding: 13px 12px; 
+  font-weight: 600;
+}
+/*Fin Cuarto estilo categorías*/
+
+
+
+.PaginacionMui {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}  
+
+.EstilosTercercheck {
   color: blue;
 }
 
-.TopFilters{
+.TopFilters {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.TopFiltersDivRight{
+
+.TopFiltersDivRight {
   display: flex;
   align-items: center;
-  gap: 3rem;
-  justify-content: space-between;
-}
-.DivVerComo{
-  display: flex;
   gap: 1.5rem;
+  justify-content: space-between;
 }
-.TitleVerComo p{
-  font-size: 20px;
+
+.DivVerComo {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.TitleVerComo p {
+  font-size: 16px;
   font-weight: 500;
   color: black;
 }
-.IconsVerComo{
+
+.IconsVerComo {
   display: flex;
   gap: 9px;
   align-items: center;
 }
-.IconsVerComo div{
+
+.IconsVerComo div {
   border: 1px solid black;
   padding: 1px;
   align-items: center;
+  cursor: pointer;
   justify-content: center;
   text-align: center;
-  width: 25px;
-} 
-.dosVista{
-  margin-left: 6px;
 }
-.tresVista{
-  margin-left: 4px;
+
+.IconsVerComo svg {
+  font-size: 28px;
+}
+
+.dosVista {
+  margin-left: 15px;
+}
+
+.tresVista {
+  margin-left: 8px;
+} 
+
+.elementsPorPag {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+}
+
+.elementsPorPag {
+  font-size: 16px;
+  font-weight: 500;
+  color: black;
 }
 
 /*Fin estils Categorías*/

@@ -1,13 +1,12 @@
 import { useState } from 'react';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
 import Pagination from '@mui/material/Pagination';
 import Checkbox from '@mui/material/Checkbox';
 import { IoMenuOutline } from "react-icons/io5";
 import { LuTally2 } from "react-icons/lu";
 import { LuTally3 } from "react-icons/lu";
 import { LuTally4 } from "react-icons/lu";
-
+import { IconButton } from '@mui/material';
+import { Select, MenuItem, createTheme, ThemeProvider } from '@mui/material';
 
 
 
@@ -15,9 +14,10 @@ function TopFiltros({ onCantidadPorPaginaChange, onOrdenChange, onEstiloChange }
 
     const [estiloSeleccionado, setEstiloSeleccionado] = useState('EstilosPrimercheck');
 
-    const handleEstiloChange = (event) => {
-        setEstiloSeleccionado(event.target.value);
-        onEstiloChange(event.target.value);
+    const handleEstiloChange = (value) => {
+        setEstiloSeleccionado(value);
+        onEstiloChange(value);
+        console.log(value); // Añade esta línea para verificar el valor seleccionado
     };
 
 
@@ -38,52 +38,142 @@ function TopFiltros({ onCantidadPorPaginaChange, onOrdenChange, onEstiloChange }
         onOrdenChange(event.target.value);
     };
 
+
+
+
+    const theme = createTheme({
+        components: {
+            MuiOutlinedInput: {
+                styleOverrides: {
+                    root: { 
+                        color:'black',
+                        fontWeight:'500', 
+                        borderRadius: 0,
+                        height: '46px',
+                        '&:hover .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'black',
+                        },
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'black',
+                        },
+                        '& .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'black', // Cambia el color del borde a negro
+                        },
+                    },
+                },
+            },
+            MuiMenuItem: {
+                styleOverrides: {
+                    root: {
+                        '&.Mui-selected': { // Estilo del elemento seleccionado
+                            backgroundColor: 'black', // Fondo negro
+                            color: 'white', // Texto blanco
+                            '&:hover': {
+                                backgroundColor: 'black', // Fondo negro al pasar el cursor
+                            },
+                        },
+                        '&:hover': {
+                            backgroundColor: '#f4f4f4',
+                        },
+                    },
+                },
+            },
+        },
+    });
+
+    const themeDos = createTheme({
+        components: {
+            MuiOutlinedInput: {
+                styleOverrides: {
+                    root: {
+                        color:'black',
+                        fontWeight:'500', 
+                        width:'200px',
+                        borderRadius: 0,
+                        height: '46px',
+                        '&:hover .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'black',
+                        },
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'black',
+                        },
+                        '& .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'black', // Cambia el color del borde a negro
+                        },
+                    },
+                },
+            },
+            MuiMenuItem: {
+                styleOverrides: {
+                    root: {
+                        '&.Mui-selected': { // Estilo del elemento seleccionado
+                            backgroundColor: 'black', // Fondo negro
+                            color: 'white', // Texto blanco
+                            '&:hover': {
+                                backgroundColor: 'black', // Fondo negro al pasar el cursor
+                            },
+                        },
+                        '&:hover': {
+                            backgroundColor: '#f4f4f4',
+                        },
+                    },
+                },
+            },
+        },
+    });
+
     return (
         <div className='TopFilters'>
 
             <div className='TopFiltersDiv'>
                 <div className='DivVerComo'>
                     <div className='TitleVerComo'>
-                        <p>Ver como</p>
+                        <p>VER COMO</p>
                     </div>
                     <div className='IconsVerComo'>
-                        <div>
-                            <IoMenuOutline />
+                        <div onClick={() => handleEstiloChange('EstilosPrimercheck')}>
+                            <IoMenuOutline color={estiloSeleccionado === 'EstilosPrimercheck' ? 'black' : '#767677'} />
                         </div>
-                        <div>
-                            <LuTally2 className='dosVista' />
+                        <div onClick={() => handleEstiloChange('EstilosSegundocheck')}>
+                            <LuTally2 className='dosVista' color={estiloSeleccionado === 'EstilosSegundocheck' ? 'black' : '#767677'} />
                         </div>
-                        <div>
-                            <LuTally3 className='tresVista' />
-                        </div> 
+                        <div onClick={() => handleEstiloChange('EstilosTercercheck')}>
+                            <LuTally3 className='tresVista' color={estiloSeleccionado === 'EstilosTercercheck' ? 'black' : '#767677'} />
+                        </div>
+                        <div onClick={() => handleEstiloChange('EstilosCuartaCheck')}>
+                            <LuTally4 className='cuartaVista' color={estiloSeleccionado === 'EstilosCuartaCheck' ? 'black' : '#767677'} />
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <Checkbox checked={estiloSeleccionado === 'EstilosPrimercheck'} onChange={handleEstiloChange} value="EstilosPrimercheck" />
-                    <Checkbox checked={estiloSeleccionado === 'EstilosSegundocheck'} onChange={handleEstiloChange} value="EstilosSegundocheck" />
-                    <Checkbox checked={estiloSeleccionado === 'EstilosTercercheck'} onChange={handleEstiloChange} value="EstilosTercercheck" />
-                </div>
+
 
             </div>
-            <div>
-                <LuTally4 />
-            </div>
             <div className='TopFiltersDivRight'>
-                <div>
-                    <Select value={cantidadPorPagina} onChange={handleCantidadPorPaginaChange}>
-                        <MenuItem value={10}>10</MenuItem>
-                        <MenuItem value={20}>20</MenuItem>
-                        <MenuItem value={30}>30</MenuItem>
-                        {/* puedes agregar más opciones aquí */}
-                    </Select>
+                <div className='elementsPorPag'>
+                    <div>
+                        <p>ELEMENTOS POR PAGINA</p>
+                    </div>
+                    <ThemeProvider theme={theme}>
+                        <Select value={cantidadPorPagina} onChange={handleCantidadPorPaginaChange}>
+                            <MenuItem value={10}>10</MenuItem>
+                            <MenuItem value={20}>20</MenuItem>
+                            <MenuItem value={30}>30</MenuItem>
+                        </Select>
+                    </ThemeProvider>
                 </div>
-                <div>
-                    <Select value={orden} onChange={handleOrdenChange}>
-                        <MenuItem value={'Alfabéticamente, A-Z'}>Alfabéticamente, A-Z</MenuItem>
-                        <MenuItem value={'Alfabéticamente, Z-A'}>Alfabéticamente, Z-A</MenuItem>
-                        <MenuItem value={'Precio, menor a mayor'}>Precio, menor a mayor</MenuItem>
-                        <MenuItem value={'Precio, mayor a menor'}>Precio, mayor a menor</MenuItem>
-                    </Select>
+
+                <div className='elementsPorPag'>
+                    <div>
+                        <p>ORDENAR</p>
+                    </div>
+                    <ThemeProvider theme={themeDos}>
+                        <Select value={orden} onChange={handleOrdenChange}>
+                            <MenuItem value={'Alfabéticamente, A-Z'}>Alfabéticamente, A-Z</MenuItem>
+                            <MenuItem value={'Alfabéticamente, Z-A'}>Alfabéticamente, Z-A</MenuItem>
+                            <MenuItem value={'Precio, menor a mayor'}>Precio, menor a mayor</MenuItem>
+                            <MenuItem value={'Precio, mayor a menor'}>Precio, mayor a menor</MenuItem>
+                        </Select>
+                    </ThemeProvider>
                 </div>
             </div>
 
@@ -111,7 +201,7 @@ function TopFiltros({ onCantidadPorPaginaChange, onOrdenChange, onEstiloChange }
 
 function Paginacion({ count, onPaginaChange }) {
     return (
-        <div>
+        <div className='PaginacionMui'>
             <Pagination count={count} onChange={onPaginaChange} />
         </div>
     );

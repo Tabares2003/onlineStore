@@ -153,7 +153,7 @@ function Buscar({ toggleDrawer }) {
                             <img src={product.image2} alt={product.name} loading="lazy" />
                             <div className='dataEnc'>
                               <div className='divdataEnc'>
-                                <p>{product.name}</p>
+                                <p>{product.name}</p> 
                               </div>
                               <div className='pricesEncontr'>
                                 <p style={product.offert ? { textDecoration: 'line-through' } : {}}>${product.price}</p>
