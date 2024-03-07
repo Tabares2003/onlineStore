@@ -1,16 +1,18 @@
-import { useState } from 'react';
+import { useState, } from 'react';
 import Pagination from '@mui/material/Pagination';
 import Checkbox from '@mui/material/Checkbox';
 import { IoMenuOutline } from "react-icons/io5";
 import { LuTally2 } from "react-icons/lu";
 import { LuTally3 } from "react-icons/lu";
 import { LuTally4 } from "react-icons/lu";
-import { Hidden, IconButton } from '@mui/material';
-import { Select, MenuItem, createTheme, ThemeProvider } from '@mui/material';
+import { Button, Hidden, IconButton } from '@mui/material';
+import { Select, MenuItem, createTheme, ThemeProvider, Drawer } from '@mui/material';
 import { CiFilter } from "react-icons/ci";
 
 import { IoChevronDownOutline } from "react-icons/io5";
-
+import { IoClose } from "react-icons/io5";
+import LeftCategorias from '../LeftComponents/LeftCategorías';
+import FiltrosCategoriasLeft from '../LeftComponents/FiltrosCategoriasLeft';
 
 function TopFiltros({ onCantidadPorPaginaChange, onOrdenChange, onEstiloChange }) {
 
@@ -41,17 +43,24 @@ function TopFiltros({ onCantidadPorPaginaChange, onOrdenChange, onEstiloChange }
     };
 
 
+    const [ordenDos, setOrdenDos] = useState('Alfabéticamente, A-Z');
 
+    const handleOrdenChangeDos = (value) => {
+        setOrden(value);
+        onOrdenChange(value);
+        handleDrawerClose(); // Cierra el drawer después de cambiar el orden
+    };
 
     const theme = createTheme({
         components: {
             MuiOutlinedInput: {
                 styleOverrides: {
                     root: {
+                        fontSize:'14px',
                         color: 'black',
                         fontWeight: '500',
                         borderRadius: 0,
-                        height: '46px',
+                        height: '42px',
                         '&:hover .MuiOutlinedInput-notchedOutline': {
                             borderColor: 'black',
                         },
@@ -88,11 +97,14 @@ function TopFiltros({ onCantidadPorPaginaChange, onOrdenChange, onEstiloChange }
             MuiOutlinedInput: {
                 styleOverrides: {
                     root: {
+                        fontSize:'14px',
+                        display:'flex',
+                        justifyContent:'space-between',
                         color: 'black',
                         fontWeight: '500',
                         width: '200px',
                         borderRadius: 0,
-                        height: '46px',
+                        height: '42px',
                         '&:hover .MuiOutlinedInput-notchedOutline': {
                             borderColor: 'black',
                         },
@@ -124,10 +136,24 @@ function TopFiltros({ onCantidadPorPaginaChange, onOrdenChange, onEstiloChange }
         },
     });
 
+
+
+    const [drawerOpenDos, setDrawerOpenDos] = useState(false);
+
+    const handleDrawerOpen = () => {
+        setDrawerOpenDos(true);
+    };
+
+    const handleDrawerClose = () => {
+        setDrawerOpenDos(false);
+    };
+
+ 
+
     return (
         <div className='TopFilters'>
 
-            <Hidden mdDown>
+            <Hidden lgDown>
 
 
                 <div className='TopFiltersDiv'>
@@ -137,7 +163,7 @@ function TopFiltros({ onCantidadPorPaginaChange, onOrdenChange, onEstiloChange }
                         </div>
                         <div className='IconsVerComo'>
                             <div onClick={() => handleEstiloChange('EstilosPrimercheck')}>
-                                <IoMenuOutline color={estiloSeleccionado === 'EstilosPrimercheck' ? 'black' : '#767677'} />
+                                <IoMenuOutline className='primerVista' color={estiloSeleccionado === 'EstilosPrimercheck' ? 'black' : '#767677'} />
                             </div>
                             <div onClick={() => handleEstiloChange('EstilosSegundocheck')}>
                                 <LuTally2 className='dosVista' color={estiloSeleccionado === 'EstilosSegundocheck' ? 'black' : '#767677'} />
@@ -183,30 +209,30 @@ function TopFiltros({ onCantidadPorPaginaChange, onOrdenChange, onEstiloChange }
 
             </Hidden>
 
-            <Hidden mdUp>
-                <div className='FiltersMobile'>
-                    <div className='firstFiltersMobile'>
-                        <CiFilter />
-                        <p>Filtrar</p>
-                    </div>
+            <Hidden lgUp>
+                <div className='FiltersMobile'> 
+ 
 
-                    <div className='SecFiltersMobile'>
-                        <div onClick={() => handleEstiloChange('EstilosSegundocheck')}>
-                            <LuTally2 className='dosVistaMobile' color={estiloSeleccionado === 'EstilosSegundocheck' ? 'black' : '#767677'} />
-                        </div>
-                        <div onClick={() => handleEstiloChange('EstilosPrimercheck')}>
-                            <IoMenuOutline color={estiloSeleccionado === 'EstilosPrimercheck' ? 'black' : '#767677'} />
-                        </div>
-                    </div>
-
-                    <div className='thirdFiltersMobile'>
+                    <div className='thirdFiltersMobile' onClick={handleDrawerOpen}>
                         <p>Ordenar por</p>
                         <IoChevronDownOutline />
                     </div>
                 </div>
             </Hidden>
 
-
+            <Drawer anchor="bottom" open={drawerOpenDos} onClose={handleDrawerClose}>
+                <div className='drawerBottomF'>
+                    <div onClick={handleDrawerClose}>
+                        <p>Ordenar por</p>
+                        <IoClose />
+                    </div>
+                    <button onClick={() => handleOrdenChangeDos('Alfabéticamente, A-Z')}>Alfabéticamente, A-Z</button>
+                    <button onClick={() => handleOrdenChangeDos('Alfabéticamente, Z-A')}>Alfabéticamente, Z-A</button>
+                    <button onClick={() => handleOrdenChangeDos('Precio, menor a mayor')}>Precio, menor a mayor</button>
+                    <button onClick={() => handleOrdenChangeDos('Precio, mayor a menor')}>Precio, mayor a menor</button>
+                </div>
+            </Drawer>
+ 
 
         </div>
     );

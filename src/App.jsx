@@ -11,6 +11,7 @@ import Historial from './pages/Historial/historial';
 import Footer from './components/Footer/Footer';
 import Resultados from './pages/resultadosEncontrados/Resultados';
 import Mujeres from './pages/Mujeres/Mujeres';
+import Niños from './pages/Niños/Niños';
 function App() {
   return (
     <CarritoProvider>
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<Inicio />} />
           <Route path="/Hombres" element={<Hombres />} />
           <Route path="/Mujeres" element={<Mujeres />} />
+          <Route path="/Niños" element={<Niños/>} />
           <Route path="/Carrito" element={<Carrito />} />
           <Route path="/Pedido" element={<Pedido />} />
           <Route path="/Historial" element={<Historial />} />

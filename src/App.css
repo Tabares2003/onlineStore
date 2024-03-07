@@ -954,7 +954,7 @@
   text-decoration-line: none !important;
   color: #767677;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .breadCat a {
@@ -962,7 +962,7 @@
   text-decoration-line: none !important;
   color: #767677;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .breadCat a p:hover {
@@ -992,12 +992,14 @@
 
 .leftCatTitle p {
   font-weight: 600;
-  font-size: 20px;
+  font-size: 19px;
 }
-
+.MainLeftCategorías{
+  width: 100%;
+}
 .leftCatTitle {
   border-bottom: 0.5px solid rgba(128, 128, 128, 0.6);
-  width: 90%;
+  width: 100%;
 }
 
 .categoriasLeftList {
@@ -1050,12 +1052,12 @@
 
 .LeftDispTitle p {
   font-weight: 600;
-  font-size: 20px;
+  font-size: 19px;
 }
 
 .LeftDispTitle {
   border-bottom: 0.5px solid rgba(128, 128, 128, 0.6);
-  width: 90%;
+  width: 100%;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
@@ -1132,7 +1134,7 @@
 }
 
 .EstilosPrimercheck img {
-  width: 210px;
+  width: 190px;
   margin-bottom: 2rem;
 }
 
@@ -1167,11 +1169,11 @@
   background-color: black;
   color: white;
   font-weight: 600;
-  padding: 13px 20px;
-  font-size: 15px;
+  padding: 10px 16px;
+  font-size: 12px;
   align-items: center;
   display: flex;
-  gap: 10px;
+  gap: 6px;
   border: 1px solid black;
 }
 
@@ -1304,7 +1306,10 @@
   margin-top: 1rem;
   cursor: pointer;
   padding: 13px 12px; 
-  font-weight: 600;
+  font-weight: 600; 
+}
+.addCartCuartStyle p{
+  font-size: 12px;
 }
 /*Fin Cuarto estilo categorías*/
 
@@ -1326,6 +1331,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .TopFiltersDivRight {
@@ -1337,12 +1343,12 @@
 
 .DivVerComo {
   display: flex;
-  gap: 1rem;
+  gap: 5px;
   align-items: center;
 }
 
 .TitleVerComo p {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
   color: black;
 }
@@ -1363,26 +1369,34 @@
 }
 
 .IconsVerComo svg {
-  font-size: 28px;
+  font-size: 22px;
 }
 
+.primerVista{
+  margin-bottom: 2px;
+}
 .dosVista {
-  margin-left: 15px;
-}
-
-
-
-.tresVista {
-  margin-left: 8px;
+  margin-left: 10px;
+  margin-bottom: 2px;
 } 
 
+.tresVista {
+  margin-bottom: 2px;
+  margin-left: 6px;
+} 
+.cuartaVista{
+  margin-bottom: 2px;
+}
 .elementsPorPag {
   display: flex;
   align-items: center;
-  gap: 1rem;
-
+  gap: 5px;
+  text-align: end;
 }
-
+.elementsPorPag p{
+  font-size: 15px !important;
+}
+ 
 .elementsPorPag {
   font-size: 16px;
   font-weight: 500;
@@ -1397,8 +1411,9 @@
 
 .FiltersMobile{
  width: 100%;
+ margin-top: 1.6rem;
  display: flex;
- justify-content: space-between;
+ justify-content: flex-end;
 }
 .firstFiltersMobile{
   display: flex;
@@ -1417,7 +1432,7 @@
 .SecFiltersMobile{
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1rem; 
 }
 .SecFiltersMobile div{ 
   border: 1px solid black;
@@ -1445,6 +1460,139 @@
   font-weight: 600;
   color: black;
 }
+
+
+.drawerBottomF{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.drawerBottomF button{
+  width: 100%;
+  background-color: white;
+  border: none;
+  color: black;
+  font-weight: 400;
+  font-size: 18px;
+  display: flex; 
+}
+.drawerBottomF div{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 0.5px solid rgba(128, 128, 128, 0.3);
+}
+.drawerBottomF div p{
+  color: black;
+  font-weight: 500;
+  font-size: 20px;
+}
+.drawerBottomF svg{
+  font-size: 22px;
+  color: black;
+}
+
+.filtrarPormobile{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem;
+  width: 360px;
+}
+.closeFP{
+  display: flex;
+  cursor: pointer;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 1rem;
+  border-bottom: 0.5px solid rgba(128, 128, 128, 0.3);
+}
+.closeFP p{
+  margin-bottom: 0 !important;
+  font-weight: 600;
+  font-size: 22px;
+  color: black;
+  text-decoration: none; 
+}
+.closeFP svg{
+  font-size: 22px;
+  color: black;
+}
+.activeCategoriaMobile {
+  display: flex;
+  align-items: center;
+  
+}
+.activeCategoriaMobile p {
+  font-weight: 400;
+  font-size: 20px;
+  color: black;
+  text-decoration: underline; 
+}
+
+.inactiveCategoríaMobile p {
+  font-weight: 400;
+  font-size: 20px;
+  color: black; 
+}
+.categMobile{
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+}
+
+.inactiveCategoríaMobile p:hover {
+  color: black;
+}
+.CategoriasMobileT{
+  width: 100%;
+  margin-top: 1.5rem;
+}
+.titleCatF{
+  padding-bottom: .6rem;
+  border-bottom: 1px solid black;
+  margin-bottom: 1.5rem;
+}
+.titleCatF p{
+  font-weight: 500;
+  font-size: 19px;
+  color: black; 
+}
+.titleCatF2{
+  margin-top: 1rem;
+}
+ 
+.filtersHidden{
+  display: flex;
+  justify-content: space-between; 
+  align-items: flex-end;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.iconOpenLeftFilters{
+  display: flex; 
+  gap: 3px; 
+  cursor: pointer;
+}
+.iconOpenLeftFilters svg{
+  font-size: 25px;
+  color: black;
+
+}
+.iconOpenLeftFilters p{
+  font-size: 18px;
+  font-weight: 600;
+  color: black;
+}
+
+
 /*Fin estilos filtros disp mobiles*/
 
 

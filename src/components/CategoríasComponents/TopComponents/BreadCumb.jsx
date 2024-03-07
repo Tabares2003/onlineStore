@@ -30,6 +30,17 @@ function BreadCumb() {
                 </Breadcrumbs>
             </div>
         );
+    } else if (location.pathname === '/Niños') {
+        breadcrumb = (
+            <div className="breadCat">
+                <Breadcrumbs separator={<IoChevronForward />} aria-label="breadcrumb">
+                    <Link href="/">
+                        <p>Inicio</p>
+                    </Link>
+                    <p>Niños</p>
+                </Breadcrumbs>
+            </div>
+        );
     }
 
     return breadcrumb;

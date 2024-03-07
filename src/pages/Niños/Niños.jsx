@@ -27,8 +27,10 @@ import { CarritoContext } from "../../components/NavBar/CarritoProvider";
 import { Link, useNavigate } from 'react-router-dom';
 import CarritoDrawer from "../../components/NavBar/CarritoDrawer";
 import mujeresCamisetas from "../../../data/camisetasMujeres"; 
+import niñosCamisetas from "../../../data/camisetasNiños"; 
 
-export default function Mujeres() {
+
+export default function Niños() {
 
     const { carrito, setCarrito } = useContext(CarritoContext);  //Carrito en el global
     const [drawerOpen, setDrawerOpen] = useState(false); //Drawer de carrito
@@ -47,9 +49,9 @@ export default function Mujeres() {
     const matches = useMediaQuery(theme.breakpoints.down('lg'));
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-    const cantidadTodos = mujeresCamisetas.length;  //leer cantidad de prductos que vienen de mujeresCamisetas
-    const cantidadEnExistencia = mujeresCamisetas.filter(producto => producto.stock > 0).length;  //leer productos que vienen sin stock
-    const cantidadAgotados = mujeresCamisetas.filter(producto => producto.stock === 0).length; //leer productos agotados
+    const cantidadTodos = niñosCamisetas.length;  //leer cantidad de prductos que vienen de niñosCamisetas
+    const cantidadEnExistencia = niñosCamisetas.filter(producto => producto.stock > 0).length;  //leer productos que vienen sin stock
+    const cantidadAgotados = niñosCamisetas.filter(producto => producto.stock === 0).length; //leer productos agotados
 
 
     //Estilo de cuadricula por defecto seleccionado 
@@ -103,11 +105,11 @@ export default function Mujeres() {
     let productosFiltrados;
 
     if (filtro === 'enExistencia') {
-        productosFiltrados = mujeresCamisetas.filter(producto => producto.stock > 0);
+        productosFiltrados = niñosCamisetas.filter(producto => producto.stock > 0);
     } else if (filtro === 'agotados') {
-        productosFiltrados = mujeresCamisetas.filter(producto => producto.stock === 0);
+        productosFiltrados = niñosCamisetas.filter(producto => producto.stock === 0);
     } else {
-        productosFiltrados = mujeresCamisetas;
+        productosFiltrados = niñosCamisetas;
     }
 
     // Ordena los productos filtrados
@@ -154,7 +156,7 @@ export default function Mujeres() {
                     <div className="BreadCumbCat">
                         <BreadCumb />
                     </div>
-                    <BannersCategorias />
+                    <BannersCategorias/>
 
                     <Grid container spacing={2}>
                         {!matches && (

@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import Slider from '@mui/material/Slider';
-import { Radio, FormControlLabel, Box } from '@mui/material';
+import { Radio, FormControlLabel, Box, Hidden, Drawer } from '@mui/material';
 import { Checkbox, createTheme, ThemeProvider } from '@mui/material';
+import { CiFilter } from "react-icons/ci";
+import LeftCategorias from './LeftCategorías';
+import { IoClose } from 'react-icons/io5';
+
+
 function FiltrosCategoriasLeft({ onFiltroChange, onRangoPrecioChange, cantidadTodos, cantidadEnExistencia, cantidadAgotados }) {
 
     const [filtro, setFiltro] = useState('todos'); // 'todos', 'enExistencia', 'agotados'
@@ -43,60 +48,156 @@ function FiltrosCategoriasLeft({ onFiltroChange, onRangoPrecioChange, cantidadTo
     };
 
 
+
+    const [drawerOpenLeft, setDrawerOpenLeft] = useState(false);
+
+    const handleDrawerOpenLeft = () => {
+        setDrawerOpenLeft(true);
+    };
+
+    const handleDrawerCloseLeft = () => {
+        setDrawerOpenLeft(false); // Aquí estaba el error
+    };
+
     return (
-        <div className='DisponibilidadMain'>
-            <div className='leftCatTitle'>
-                <p>Disponibilidad</p>
-            </div>
-            <ThemeProvider theme={theme}>
-                <div className='DispChecks'>
-                    <div className='divCheckMain'>
-                        <Checkbox checked={filtro === 'todos'} onChange={handleFiltroChange} name="filtro" value="todos" />
-                        <label htmlFor="todos">Todos ({cantidadTodos})</label>
+        <div className='mainFiltrosLeft'>
+
+            <Hidden lgDown>
+                <div className='DisponibilidadMain'>
+                    <div className='leftCatTitle'>
+                        <p>Disponibilidad</p>
                     </div>
-                    <div className='divCheckMain'>
-                        <Checkbox checked={filtro === 'enExistencia'} onChange={handleFiltroChange} name="filtro" value="enExistencia" />
-                        <label htmlFor="enExistencia">En existencia ({cantidadEnExistencia})</label>
+                    <ThemeProvider theme={theme}>
+                        <div className='DispChecks'>
+                            <div className='divCheckMain'>
+                                <Checkbox checked={filtro === 'todos'} onChange={handleFiltroChange} name="filtro" value="todos" />
+                                <label htmlFor="todos">Todos ({cantidadTodos})</label>
+                            </div>
+                            <div className='divCheckMain'>
+                                <Checkbox checked={filtro === 'enExistencia'} onChange={handleFiltroChange} name="filtro" value="enExistencia" />
+                                <label htmlFor="enExistencia">En existencia ({cantidadEnExistencia})</label>
+                            </div>
+                            <div className='divCheckMain'>
+                                <Checkbox checked={filtro === 'agotados'} onChange={handleFiltroChange} name="filtro" value="agotados" />
+                                <label htmlFor="agotados">Agotados ({cantidadAgotados})</label>
+                            </div>
+                        </div>
+                    </ThemeProvider>
+
+
+                    <div className='PrecioLeft'>
+                        <div className='LeftDispTitle'>
+                            <p>Precio</p>
+                        </div>
+                        <ThemeProvider theme={theme}>
+                            <div className='SliderPrecio'>
+                                <Slider
+                                    value={rangoPrecio}
+                                    onChange={handleRangoPrecioChange}
+                                    valueLabelDisplay="auto"
+                                    min={0}
+                                    max={400000}
+                                />
+                            </div>
+                        </ThemeProvider>
+                        <div className='RangoPrice'>
+                            <div className='RangoDiv'>
+                                <p>${rangoPrecio[0]}</p>
+                            </div>
+
+                            <div className='RangoA'>
+                                <p>a</p>
+                            </div>
+
+                            <div className='RangoDiv'>
+                                <p>${rangoPrecio[1]}</p>
+                            </div>
+                        </div>
                     </div>
-                    <div className='divCheckMain'>
-                        <Checkbox checked={filtro === 'agotados'} onChange={handleFiltroChange} name="filtro" value="agotados" />
-                        <label htmlFor="agotados">Agotados ({cantidadAgotados})</label>
-                    </div>
+
                 </div>
-            </ThemeProvider>
+            </Hidden>
 
-
-            <div className='PrecioLeft'>
-                <div className='LeftDispTitle'>
-                    <p>Precio</p>
+            <Hidden lgUp>
+                <div className='iconOpenLeftFilters' onClick={handleDrawerOpenLeft}>
+                    <CiFilter />
+                    <p>Filtrar</p>
                 </div>
-                <ThemeProvider theme={theme}>
-                    <div className='SliderPrecio'>
-                        <Slider
-                            value={rangoPrecio}
-                            onChange={handleRangoPrecioChange}
-                            valueLabelDisplay="auto"
-                            min={0}
-                            max={400000}
-                        />
+            </Hidden>
+
+
+
+            <Drawer anchor="left" open={drawerOpenLeft} onClose={handleDrawerCloseLeft}>
+                <div className='filtrarPormobile'>
+                    <div className='closeFP' onClick={handleDrawerCloseLeft}>
+                        <p>Filtrar por</p>
+                        <IoClose />
                     </div>
-                </ThemeProvider>
-                <div className='RangoPrice'>
-                    <div className='RangoDiv'>
-                        <p>${rangoPrecio[0]}</p>
+                    <div className='CategoriasMobileT'>
+                        <div className='titleCatF'>
+                            <p>Categorías</p>
+                        </div>
+                        <LeftCategorias />
                     </div>
 
-                    <div className='RangoA'>
-                        <p>a</p>
+                    <div className='disponibMobile'>
+                        <div className='titleCatF titleCatF2'>
+                            <p>Disponibilidad</p>
+                        </div>
+
+                        <ThemeProvider theme={theme}>
+                            <div className='DispChecks'>
+                                <div className='divCheckMain'>
+                                    <Checkbox checked={filtro === 'todos'} onClick={handleDrawerCloseLeft} onChange={handleFiltroChange} name="filtro" value="todos" />
+                                    <label htmlFor="todos">Todos ({cantidadTodos})</label>
+                                </div>
+                                <div className='divCheckMain'>
+                                    <Checkbox checked={filtro === 'enExistencia'} onChange={handleFiltroChange} onClick={handleDrawerCloseLeft} name="filtro" value="enExistencia" />
+                                    <label htmlFor="enExistencia">En existencia ({cantidadEnExistencia})</label>
+                                </div>
+                                <div className='divCheckMain'>
+                                    <Checkbox checked={filtro === 'agotados'} onChange={handleFiltroChange} name="filtro" value="agotados" />
+                                    <label htmlFor="agotados">Agotados ({cantidadAgotados})</label>
+                                </div>
+                            </div>
+                        </ThemeProvider>
+
+
                     </div>
 
-                    <div className='RangoDiv'>
-                        <p>${rangoPrecio[1]}</p>
+                    <div className='disponibMobile'>  
+                        <div className='titleCatF titleCatF2'>
+                            <p>Precio</p>
+                        </div>
+                        <ThemeProvider theme={theme} >
+                            <div className='SliderPrecio' >
+                                <Slider
+                                    value={rangoPrecio}
+                                    onChange={handleRangoPrecioChange}
+                                    valueLabelDisplay="auto"
+                                    min={0}
+                                    max={400000}
+                                />
+                            </div>
+                        </ThemeProvider>
+                        <div className='RangoPrice'>
+                            <div className='RangoDiv'>
+                                <p>${rangoPrecio[0]}</p>
+                            </div> 
+                            <div className='RangoA'>
+                                <p>a</p>
+                            </div> 
+                            <div className='RangoDiv'>
+                                <p>${rangoPrecio[1]}</p>
+                            </div>
+                        </div> 
                     </div>
+
+
                 </div>
-            </div>
-
+            </Drawer>
         </div>
+
     );
 }
 

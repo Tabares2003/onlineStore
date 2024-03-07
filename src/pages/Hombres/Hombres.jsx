@@ -29,65 +29,76 @@ import CarritoDrawer from "../../components/NavBar/CarritoDrawer";
 
 export default function Hombres() {
 
+    const { carrito, setCarrito } = useContext(CarritoContext);  //Carrito en el global
+    const [drawerOpen, setDrawerOpen] = useState(false); //Drawer de carrito
+    const navigate = useNavigate(); //Link del react router dom
 
-    //Consts measured, 80% and in md 100%.
+    //Estados de filtros
+    const [orden, setOrden] = useState('Alfabéticamente, A-Z');  //Estado que funciona para almacenar el filtro de letras en A a Z
+    const [cantidadPorPagina, setCantidadPorPagina] = useState(10);  //Estado que funciona para almacenar el filtro 10 productos por pagina
+    const [paginaActual, setPaginaActual] = useState(1); //Estado para reconocer la pagina actual 
+    const [rangoPrecio, setRangoPrecio] = useState([0, 400000]); //Estado para asignar maximo de precio
+    const [filtro, setFiltro] = useState('todos'); //Estado para amostrar todos los productos
+
+    //Medidas Mui
     const theme = useTheme();
-    const isMdDown = useMediaQuery(theme.breakpoints.down('md'));
-    const matches = useMediaQuery(theme.breakpoints.down('md'));
+    const isMdDown = useMediaQuery(theme.breakpoints.down('lg'));
+    const matches = useMediaQuery(theme.breakpoints.down('lg'));
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+    const cantidadTodos = hombresCamisas.length;  //leer cantidad de prductos que vienen de hombresCamisas
+    const cantidadEnExistencia = hombresCamisas.filter(producto => producto.stock > 0).length;  //leer productos que vienen sin stock
+    const cantidadAgotados = hombresCamisas.filter(producto => producto.stock === 0).length; //leer productos agotados
 
 
-    const cantidadTodos = hombresCamisas.length;
-    const cantidadEnExistencia = hombresCamisas.filter(producto => producto.stock > 0).length;
-    const cantidadAgotados = hombresCamisas.filter(producto => producto.stock === 0).length;
-
-
-
+    //Estilo de cuadricula por defecto seleccionado 
     const [estiloSeleccionado, setEstiloSeleccionado] = useState('EstilosPrimercheck');
 
+    // Handle para cambiar de estilos de cuadriculas
     const handleEstiloChange = (nuevoEstilo) => {
         setEstiloSeleccionado(nuevoEstilo);
     };
 
+    // Escucha los cambios en el tamaño de la pantalla
+    useEffect(() => {
+        if (isSmallScreen) {
+            setEstiloSeleccionado('EstilosSegundocheck');
+        }
+    }, [isSmallScreen]);
 
 
+    //Función que almacena del producto en el local storage del carrito
+    useEffect(() => {
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+    }, [carrito]);
 
-
-
-
-    const [orden, setOrden] = useState('Alfabéticamente, A-Z');
-
+    //handle para asignar filtros de precio, por abcedario, etc
     const handleOrdenChange = (nuevoOrden) => {
         setOrden(nuevoOrden);
     };
 
-
-
-
-    const [cantidadPorPagina, setCantidadPorPagina] = useState(10);
-
+    //handle para cambiar de pagina de cantidad de productos
     const handleCantidadPorPaginaChange = (nuevaCantidadPorPagina) => {
         setCantidadPorPagina(nuevaCantidadPorPagina);
     };
-    const [paginaActual, setPaginaActual] = useState(1);
 
+    //handle para ir a la pagina nueva
     const handlePaginaChange = (event, nuevaPagina) => {
         setPaginaActual(nuevaPagina);
     };
 
-
-
-    const [rangoPrecio, setRangoPrecio] = useState([0, 400000]);
-
+    //Handle para filtrar por rango de precio
     const handleRangoPrecioChange = (nuevoRangoPrecio) => {
         setRangoPrecio(nuevoRangoPrecio);
     };
 
-    const [filtro, setFiltro] = useState('todos');
 
+    //Filtro que muestra productos agotados, disponibles y todos
     const handleFiltroChange = (nuevoFiltro) => {
         setFiltro(nuevoFiltro);
     };
 
+    //programación de filtros
     let productosFiltrados;
 
     if (filtro === 'enExistencia') {
@@ -113,27 +124,6 @@ export default function Hombres() {
     productosFiltrados = productosFiltrados.filter(producto => producto.price >= rangoPrecio[0] && producto.price <= rangoPrecio[1]);
 
 
-
-
-
-
-
-
-
-
-
-
-    const { carrito, setCarrito } = useContext(CarritoContext);
-    const [drawerOpen, setDrawerOpen] = useState(false);
-    const navigate = useNavigate();
-
-
-
-    useEffect(() => {
-        localStorage.setItem('carrito', JSON.stringify(carrito));
-    }, [carrito]);
-
-
     //Función para agregar al carrito por medio del local y se abre drawer de Mui
     const agregarAlCarrito = (producto) => {
         const productoEnCarrito = carrito.find(item => item.id === producto.id);
@@ -156,9 +146,6 @@ export default function Hombres() {
     };
 
 
-
-
-
     return (
         <>
             <Grid container>
@@ -168,7 +155,7 @@ export default function Hombres() {
                     </div>
                     <BannersCategorias />
 
-                    <Grid container spacing={3}>
+                    <Grid container spacing={2}>
                         {!matches && (
                             <Grid item xs={12} md={3}>
                                 <LeftCategorias />
@@ -176,7 +163,13 @@ export default function Hombres() {
                             </Grid>
                         )}
                         <Grid item xs={12} md={matches ? 12 : 9} display={'flex'} flexDirection={'column'}>
-                            <TopFiltros onCantidadPorPaginaChange={handleCantidadPorPaginaChange} onOrdenChange={handleOrdenChange} onEstiloChange={handleEstiloChange} />
+                            <div className="filtersHidden">
+                                <Hidden lgUp>
+                                    <FiltrosCategoriasLeft onFiltroChange={handleFiltroChange} onRangoPrecioChange={handleRangoPrecioChange} cantidadTodos={cantidadTodos} cantidadEnExistencia={cantidadEnExistencia} cantidadAgotados={cantidadAgotados} />
+                                </Hidden>
+                                <TopFiltros onCantidadPorPaginaChange={handleCantidadPorPaginaChange} onOrdenChange={handleOrdenChange} onEstiloChange={handleEstiloChange} />
+                            </div>
+
                             <div className="EstilosCheck">
 
 
@@ -238,8 +231,8 @@ export default function Hombres() {
                                             </div>
                                         </Grid>
                                     );
-                                })}  
- 
+                                })}
+
 
                                 {estiloSeleccionado === 'EstilosTercercheck' && productosFiltrados.slice((paginaActual - 1) * cantidadPorPagina, paginaActual * cantidadPorPagina).map((producto) => {
                                     const descuento = producto.offert ? ((producto.price - producto.offert) / producto.price) * 100 : 0;
@@ -270,7 +263,7 @@ export default function Hombres() {
                                             </div>
                                         </Grid>
                                     );
-                                })} 
+                                })}
 
 
                                 {estiloSeleccionado === 'EstilosCuartaCheck' && productosFiltrados.slice((paginaActual - 1) * cantidadPorPagina, paginaActual * cantidadPorPagina).map((producto) => {
@@ -301,7 +294,7 @@ export default function Hombres() {
                                             </div>
                                         </Grid>
                                     );
-                                })} 
+                                })}
 
 
 
