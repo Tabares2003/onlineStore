@@ -8,6 +8,8 @@ function Titulo() {
         titulo = 'Camisetas de Mujeres';
     } else if (location.pathname === '/Hombres') {
         titulo = 'Camisetas de Hombres';
+    }else if (location.pathname === '/Niños') {
+        titulo = 'Camisetas de Niños';
     }
 
     return <h2>{titulo}</h2>;

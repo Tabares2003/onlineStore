@@ -10,7 +10,7 @@ function MenuMobile({ onClose }) {
     const menuItems = [
         { title: 'INICIO', path: '/' },
         { title: 'HOMBRES', path: '/Hombres' },
-        { title: 'NIÑOS', path: '/niños' },
+        { title: 'NIÑOS', path: '/Niños' },
         { title: 'MUJERES', path: '/Mujeres' },
         { title: 'PROMOCIONES', path: '/promociones' },
         { title: 'HISTORIAL', path: '/historial' },
