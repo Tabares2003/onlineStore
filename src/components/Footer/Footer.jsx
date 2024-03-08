@@ -9,7 +9,7 @@ export default function Footer() {
     return (
         <>
             {/* Container for the footer */}
-            <Box bgcolor="black" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Box bgcolor="black" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', marginTop:'6rem' }}>
                 <Box bgcolor="black" color="white" display={'flex'} sx={{ width: '80%', flexDirection: 'column' }}>
                     {/* Horizontal divider line */}
                     <Divider sx={{ border: '1px solid white', marginBottom: '2rem', marginTop: '2.3rem' }} />

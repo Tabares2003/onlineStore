@@ -92,7 +92,7 @@ export default function Chaquetas() {
                                 <SwiperSlide key={index}>
                                     <div className="SlideSwiper"
                                         onMouseOver={() => setIsHovered(true)}
-                                        onMouseOut={() => setIsHovered(false)}
+                                        onMouseOut={() => setIsHovered(false)} 
                                     >
                                         <div className="SlideSwiperImgDescuento">
                                             <div className="subSlideSwiperImgDescuento">
