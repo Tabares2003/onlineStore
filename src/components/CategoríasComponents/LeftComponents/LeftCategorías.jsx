@@ -11,9 +11,9 @@ function LeftCategorias() {
     const location = useLocation();
 
     const categorias = [
+        { ruta: '/', nombre: 'Inicio' },
         { ruta: '/Mujeres', nombre: 'Mujeres' },
-        { ruta: '/Hombres', nombre: 'Hombres' },
-        { ruta: '/Niños', nombre: 'Niños' },
+        { ruta: '/Hombres', nombre: 'Hombres' }, 
         { ruta: '/Promociones', nombre: 'Promociones' },
 
     ];

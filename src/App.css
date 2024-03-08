@@ -1596,8 +1596,62 @@
 /*Fin estilos filtros disp mobiles*/
 
 
-/*Inicio estils hombres*/
+/*Inicio estils historial*/
+.TitleHistorial{
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  margin-left: 8px;
+}
+.TitleHistorial h3{
+  margin-bottom: 0 !important;
+  text-decoration-line: none !important;
+  color: black;
+  font-size: 18px;
+  font-weight: 500;
+}
+.HistorialMain{
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
 
 
+.itemHistorial{
+  position: relative;
+  margin: 10px;
+}
+.itemHistorial img{
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+.hitorialData{
+  display: flex;
+  margin-top: 5px;
+  justify-content: space-between;
+}
+.hitorialData svg{
+  font-size: 19px;
+  color: red;
+  cursor: pointer;
+  margin-left: 9px;
+}
+.priceH{
+  font-size: 16px;
+  font-weight: 500; 
+}
+.pricesHistorial h6{ 
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 !important;
+}
+.pricesHistorial{
+  display: flex;
+  flex-direction: column;
+}
+.priceH{
+  display: flex;
+  gap: 10px;
+}
+/*Fin estils historial*/
 
-/*Fin estils hombres*/

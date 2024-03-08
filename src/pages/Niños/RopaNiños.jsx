@@ -27,7 +27,7 @@ import { CarritoContext } from "../../components/NavBar/CarritoProvider";
 import { Link, useNavigate } from 'react-router-dom';
 import CarritoDrawer from "../../components/NavBar/CarritoDrawer";
 
-export default function Niños() {
+export default function RopaNiños() {
 
     const { carrito, setCarrito } = useContext(CarritoContext);  //Carrito en el global
     const [drawerOpen, setDrawerOpen] = useState(false); //Drawer de carrito

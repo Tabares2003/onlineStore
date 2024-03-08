@@ -6,13 +6,13 @@ import { Hidden } from '@mui/material';
 const imagenesPorPagina = {
     '/Mujeres': ['https://i.postimg.cc/GtqkW065/CatImg3.png', 'https://i.postimg.cc/FFZgdc1V/CatImg2.png', 'https://i.postimg.cc/rs81ZyZ4/CatImg1.png'],
     '/Hombres': ['https://i.postimg.cc/GtqkW065/CatImg3.png', 'https://i.postimg.cc/GtqkW065/CatImg3.png', 'https://i.postimg.cc/GtqkW065/CatImg3.png'],
-    '/Niños': ['https://i.postimg.cc/GtqkW065/CatImg3.png', 'https://i.postimg.cc/GtqkW065/CatImg3.png', 'https://i.postimg.cc/GtqkW065/CatImg3.png']
+    '/Promociones': ['https://i.postimg.cc/GtqkW065/CatImg3.png', 'https://i.postimg.cc/GtqkW065/CatImg3.png', 'https://i.postimg.cc/GtqkW065/CatImg3.png']
 };
 
 const imagenesPorPaginaMobile = {
     '/Mujeres': ['https://i.postimg.cc/BQFH0wRb/Mobile1.png', 'https://i.postimg.cc/CxVDLsVN/Mobile2.png', 'https://i.postimg.cc/WpCgxPWx/Mobile3.png'],
-    '/Hombres': ['https://i.postimg.cc/WpCgxPWx/Mobile3.png', 'https://i.postimg.cc/WpCgxPWx/Mobile3.png', 'https://i.postimg.cc/CxVDLsVN/Mobile2.png'],
-    '/Niños': ['https://i.postimg.cc/BQFH0wRb/Mobile1.png', 'https://i.postimg.cc/CxVDLsVN/Mobile2.png', 'https://i.postimg.cc/WpCgxPWx/Mobile3.png'],
+    '/Hombres': ['https://i.postimg.cc/WpCgxPWx/Mobile3.png', 'https://i.postimg.cc/WpCgxPWx/Mobile3.png', 'https://i.postimg.cc/CxVDLsVN/Mobile2.png'], 
+    '/Promociones': ['https://i.postimg.cc/BQFH0wRb/Mobile1.png', 'https://i.postimg.cc/CxVDLsVN/Mobile2.png', 'https://i.postimg.cc/WpCgxPWx/Mobile3.png'],
 };
 
 function BannersCategorias() { 

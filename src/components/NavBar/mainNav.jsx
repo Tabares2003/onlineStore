@@ -125,8 +125,7 @@ function mainNav() {
 
                     <div className='linksNavPc'>
                         <Link to="/"><p>INICIO</p></Link>
-                        <Link to="/Hombres"><p>HOMBRES</p></Link>
-                        <Link to="/Niños"><p>NIÑOS</p></Link>
+                        <Link to="/Hombres"><p>HOMBRES</p></Link> 
                         <Link to="/Mujeres"><p>MUJERES</p></Link>
                         <Link to="/Promociones"><p>PROMOCIONES</p></Link>
                         <Link to="/Historial"><p>HISTORIAL</p></Link>

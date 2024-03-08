@@ -30,14 +30,25 @@ function BreadCumb() {
                 </Breadcrumbs>
             </div>
         );
-    } else if (location.pathname === '/Niños') {
+    } else if (location.pathname === '/Promociones') {
         breadcrumb = (
             <div className="breadCat">
                 <Breadcrumbs separator={<IoChevronForward />} aria-label="breadcrumb">
                     <Link href="/">
                         <p>Inicio</p>
                     </Link>
-                    <p>Niños</p>
+                    <p>Promociones</p>
+                </Breadcrumbs>
+            </div>
+        );
+    } else if (location.pathname === '/historial') {
+        breadcrumb = (
+            <div className="breadCat">
+                <Breadcrumbs separator={<IoChevronForward />} aria-label="breadcrumb">
+                    <Link href="/">
+                        <p>Inicio</p>
+                    </Link>
+                    <p>Historial</p>
                 </Breadcrumbs>
             </div>
         );
